@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import KeywordSelection from "./Round1_KeywordSelection/KeywordSelection";
 import BooleanQueryBuilder from "./Round2_BooleanOperators/BooleanQueryBuilder";
 import DatabaseRanking from "./Round3_DatabaseSelection/DatabaseRanking";
+import ResultsFilter from "./Round4_ResultsFilter/ResultsFilter";
 import { getRound1Data } from "../../data/section1/round1_data";
 import { getRound2Data } from "../../data/section1/round2_data";
 import { getRound3Data } from "../../data/section1/round3_data";
+import { getRound4Data } from "../../data/section1/round4_data";
 
 /**
  * Container component for Section 1: Academic Information Search
@@ -58,9 +60,8 @@ const Section1Container = ({ facultyId, facultyColor, onSectionComplete }) => {
       round3: data,
     }));
     setTotalScore((prev) => prev + data.score);
-    // TODO: Move to Round 4 when implemented
-    // For now, skip to completion
-    setCurrentRound(5);
+    // Move to Round 4
+    setCurrentRound(4);
   }, []);
 
   // Handle completion of Round 4
@@ -144,18 +145,13 @@ const Section1Container = ({ facultyId, facultyColor, onSectionComplete }) => {
         />
       )}
 
-      {/* Round 4: Results Filter (TODO) */}
+      {/* Round 4: Results Filter */}
       {currentRound === 4 && (
-        <div className="placeholder-round">
-          <h3>Kolo 4: Filtrace výsledků</h3>
-          <p>Toto kolo bude implementováno později</p>
-          <button
-            onClick={() => handleRound4Complete({ score: 0 })}
-            className="skip-button"
-          >
-            Přeskočit (pro testování)
-          </button>
-        </div>
+        <ResultsFilter
+          scenarioData={getRound4Data(facultyId)}
+          onComplete={handleRound4Complete}
+          facultyColor={facultyColor}
+        />
       )}
 
       {/* Completion Screen */}
