@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
+import PropTypes from "prop-types";
 
-const TaskScreen = ({
+const TaskScreen = React.memo(({
   currentTask,
   tasks,
   taskStates,
@@ -23,6 +24,21 @@ const TaskScreen = ({
   const currentTaskState = taskStates[`task${currentTask + 1}`];
   const currentSubtask =
     currentTaskData.subtasks[currentTaskState.currentSubtask];
+
+  // Memoize time status
+  const timeStatus = useMemo(() => {
+    return timeLeft <= 300 ? "status-critical" : "status-success";
+  }, [timeLeft]);
+
+  // Memoize time indicator text
+  const timeIndicatorText = useMemo(() => {
+    return timeLeft <= 300 ? "⚠️ KRITICKÝ" : "✓ STABILNÍ";
+  }, [timeLeft]);
+
+  // Memoize integrity status
+  const integrityStatus = useMemo(() => {
+    return databaseIntegrity < 50 ? "status-critical" : "status-success";
+  }, [databaseIntegrity]);
 
   return (
     <div className="terminal-container">
@@ -70,29 +86,25 @@ const TaskScreen = ({
               }}
             >
               <div className="status-item">
-                <div className="status-value">{formatTime(timeLeft)}</div>
+                <div className="status-value" aria-live="polite">
+                  {formatTime(timeLeft)}
+                </div>
                 <div className="status-label">ZBÝVAJÍCÍ ČAS</div>
-                <div
-                  className={`status-indicator ${
-                    timeLeft <= 300 ? "status-critical" : "status-success"
-                  }`}
-                >
-                  {timeLeft <= 300 ? "⚠️ KRITICKÝ" : "✓ STABILNÍ"}
+                <div className={`status-indicator ${timeStatus}`} role="status">
+                  {timeIndicatorText}
                 </div>
               </div>
 
               <div className="status-item">
-                <div className="status-value" style={{ color: "#4444ff" }}>
+                <div
+                  className="status-value"
+                  style={{ color: "#4444ff" }}
+                  aria-live="polite"
+                >
                   {databaseIntegrity}%
                 </div>
                 <div className="status-label">INTEGRITA DB</div>
-                <div
-                  className={`status-indicator ${
-                    databaseIntegrity < 50
-                      ? "status-critical"
-                      : "status-success"
-                  }`}
-                >
+                <div className={`status-indicator ${integrityStatus}`} role="status">
                   {getDamageLevel().toUpperCase()}
                 </div>
               </div>
@@ -149,7 +161,7 @@ const TaskScreen = ({
               <p className="question-text">{currentSubtask.question}</p>
 
               {/* Answer Options */}
-              <div className="answer-options">
+              <div className="answer-options" role="group" aria-label="Možnosti odpovědi">
                 {currentSubtask.options.map((option, index) => (
                   <button
                     key={index}
@@ -161,8 +173,9 @@ const TaskScreen = ({
                       )
                     }
                     className="answer-button"
+                    aria-label={`Možnost ${String.fromCharCode(65 + index)}: ${option}`}
                   >
-                    <span className="answer-prefix">
+                    <span className="answer-prefix" aria-hidden="true">
                       [{String.fromCharCode(65 + index)}]
                     </span>
                     <span>{option}</span>
@@ -239,6 +252,38 @@ const TaskScreen = ({
       </div>
     </div>
   );
+});
+
+TaskScreen.displayName = "TaskScreen";
+
+TaskScreen.propTypes = {
+  currentTask: PropTypes.number.isRequired,
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      subtasks: PropTypes.array.isRequired,
+    })
+  ).isRequired,
+  taskStates: PropTypes.object.isRequired,
+  timeLeft: PropTypes.number.isRequired,
+  databaseIntegrity: PropTypes.number.isRequired,
+  wrongAnswersCount: PropTypes.number.isRequired,
+  collectedDigits: PropTypes.array.isRequired,
+  playerName: PropTypes.string.isRequired,
+  selectedFaculty: PropTypes.shape({
+    shortName: PropTypes.string,
+    name: PropTypes.string,
+    color: PropTypes.string,
+  }),
+  showHint: PropTypes.bool.isRequired,
+  setShowHint: PropTypes.func.isRequired,
+  formatTime: PropTypes.func.isRequired,
+  getDamageLevel: PropTypes.func.isRequired,
+  handleAnswer: PropTypes.func.isRequired,
+  handleTaskSelect: PropTypes.func.isRequired,
+  onShowFinalCode: PropTypes.func.isRequired,
+  COLLECTED_DIGITS: PropTypes.array.isRequired,
 };
 
 export default TaskScreen;
