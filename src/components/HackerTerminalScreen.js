@@ -388,14 +388,24 @@ const HackerTerminalScreen = ({
                   )}
 
                   {loadingStep >= 6 && (
-                    <div className="log-line ready">
-                      <span className="log-timestamp">
-                        [{stepTimes[7] || new Date().toLocaleTimeString()}]
-                      </span>{" "}
-                      {formatLogMessage(
-                        "[READY] SYSTÉM PŘIPRAVEN. Zadejte aktivační příkaz."
-                      )}
-                    </div>
+                    <>
+                      <div className="log-line ready">
+                        <span className="log-timestamp">
+                          [{stepTimes[7] || new Date().toLocaleTimeString()}]
+                        </span>{" "}
+                        {formatLogMessage(
+                          "[READY] SYSTÉM PŘIPRAVEN. Zadejte aktivační příkaz."
+                        )}
+                      </div>
+                      <div className="log-line">
+                        <span className="log-timestamp">
+                          [{stepTimes[7] || new Date().toLocaleTimeString()}]
+                        </span>{" "}
+                        {formatLogMessage(
+                          "[INFO] Očekávám: run restore protocol"
+                        )}
+                      </div>
+                    </>
                   )}
 
                   {/* NOVÉ: Dynamické logy */}
