@@ -292,6 +292,16 @@ const OverviewScreen = ({
                 message: "[INFO] Zadejte příkaz pro aktivaci",
               },
             ]);
+
+            setTimeout(() => {
+              setLogs((prev) => [
+                ...prev,
+                {
+                  time: new Date().toLocaleTimeString(),
+                  message: "[INFO] Očekávám: run defense",
+                },
+              ]);
+            }, 500);
           }, 500);
         }, 2000);
         clearInterval(logInterval);
