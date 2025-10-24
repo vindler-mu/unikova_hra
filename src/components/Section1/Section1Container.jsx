@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
+import TerminalWrapper from "./TerminalWrapper";
 import KeywordSelection from "./Round1_KeywordSelection/KeywordSelection";
 import BooleanQueryBuilder from "./Round2_BooleanOperators/BooleanQueryBuilder";
 import DatabaseRanking from "./Round3_DatabaseSelection/DatabaseRanking";
@@ -8,6 +9,7 @@ import { getRound1Data } from "../../data/section1/round1_data";
 import { getRound2Data } from "../../data/section1/round2_data";
 import { getRound3Data } from "../../data/section1/round3_data";
 import { getRound4Data } from "../../data/section1/round4_data";
+import "./Section1Terminal.css";
 
 /**
  * Container component for Section 1: Academic Information Search
@@ -120,62 +122,92 @@ const Section1Container = ({ facultyId, facultyColor, onSectionComplete }) => {
 
       {/* Round 1: Keyword Selection */}
       {currentRound === 1 && (
-        <KeywordSelection
-          scenarioData={getRound1Data(facultyId)}
-          onComplete={handleRound1Complete}
-          facultyColor={facultyColor}
-        />
+        <TerminalWrapper
+          roundNumber={1}
+          roundName="keywords"
+          facultyName={facultyId?.toUpperCase()}
+        >
+          <KeywordSelection
+            scenarioData={getRound1Data(facultyId)}
+            onComplete={handleRound1Complete}
+            facultyColor={facultyColor}
+          />
+        </TerminalWrapper>
       )}
 
       {/* Round 2: Boolean Operators */}
       {currentRound === 2 && (
-        <BooleanQueryBuilder
-          scenarioData={getRound2Data(facultyId)}
-          onComplete={handleRound2Complete}
-          facultyColor={facultyColor}
-        />
+        <TerminalWrapper
+          roundNumber={2}
+          roundName="boolean"
+          facultyName={facultyId?.toUpperCase()}
+        >
+          <BooleanQueryBuilder
+            scenarioData={getRound2Data(facultyId)}
+            onComplete={handleRound2Complete}
+            facultyColor={facultyColor}
+          />
+        </TerminalWrapper>
       )}
 
       {/* Round 3: Database Selection */}
       {currentRound === 3 && (
-        <DatabaseRanking
-          scenarioData={getRound3Data(facultyId)}
-          onComplete={handleRound3Complete}
-          facultyColor={facultyColor}
-        />
+        <TerminalWrapper
+          roundNumber={3}
+          roundName="databases"
+          facultyName={facultyId?.toUpperCase()}
+        >
+          <DatabaseRanking
+            scenarioData={getRound3Data(facultyId)}
+            onComplete={handleRound3Complete}
+            facultyColor={facultyColor}
+          />
+        </TerminalWrapper>
       )}
 
       {/* Round 4: Results Filter */}
       {currentRound === 4 && (
-        <ResultsFilter
-          scenarioData={getRound4Data(facultyId)}
-          onComplete={handleRound4Complete}
-          facultyColor={facultyColor}
-        />
+        <TerminalWrapper
+          roundNumber={4}
+          roundName="filter"
+          facultyName={facultyId?.toUpperCase()}
+        >
+          <ResultsFilter
+            scenarioData={getRound4Data(facultyId)}
+            onComplete={handleRound4Complete}
+            facultyColor={facultyColor}
+          />
+        </TerminalWrapper>
       )}
 
       {/* Completion Screen */}
       {currentRound === 5 && (
-        <div className="completion-screen">
-          <div className="completion-card">
-            <h2 className="completion-title">🎉 ODDÍL 1 DOKONČEN!</h2>
-            <div className="completion-score">
-              <div className="score-display">
-                <span className="score-number">{totalScore}</span>
-                <span className="score-max">/ 400</span>
+        <TerminalWrapper
+          roundNumber={5}
+          roundName="complete"
+          facultyName={facultyId?.toUpperCase()}
+        >
+          <div className="completion-screen">
+            <div className="completion-card">
+              <h2 className="completion-title">🎯 ODDÍL 1 DOKONČEN!</h2>
+              <div className="completion-score">
+                <div className="score-display">
+                  <span className="score-number">{totalScore}</span>
+                  <span className="score-max">/ 400</span>
+                </div>
+                <div className="score-percentage">
+                  {Math.round((totalScore / 400) * 100)}%
+                </div>
               </div>
-              <div className="score-percentage">
-                {Math.round((totalScore / 400) * 100)}%
+              <div className="completion-message">
+                Výborně! Dokončil jsi první oddíl akademického vyhledávání.
               </div>
+              <button className="continue-button" onClick={handleFinalComplete}>
+                Pokračovat → Debriefing
+              </button>
             </div>
-            <div className="completion-message">
-              Výborně! Dokončil jsi první oddíl akademického vyhledávání.
-            </div>
-            <button className="continue-button" onClick={handleFinalComplete}>
-              Pokračovat na Oddíl 2 →
-            </button>
           </div>
-        </div>
+        </TerminalWrapper>
       )}
 
       <style jsx>{`
