@@ -2,8 +2,10 @@ import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import KeywordSelection from "./Round1_KeywordSelection/KeywordSelection";
 import BooleanQueryBuilder from "./Round2_BooleanOperators/BooleanQueryBuilder";
+import DatabaseRanking from "./Round3_DatabaseSelection/DatabaseRanking";
 import { getRound1Data } from "../../data/section1/round1_data";
 import { getRound2Data } from "../../data/section1/round2_data";
+import { getRound3Data } from "../../data/section1/round3_data";
 
 /**
  * Container component for Section 1: Academic Information Search
@@ -45,9 +47,8 @@ const Section1Container = ({ facultyId, facultyColor, onSectionComplete }) => {
       round2: data,
     }));
     setTotalScore((prev) => prev + data.score);
-    // TODO: Move to Round 3 when implemented
-    // For now, skip to completion
-    setCurrentRound(5);
+    // Move to Round 3
+    setCurrentRound(3);
   }, []);
 
   // Handle completion of Round 3
@@ -57,7 +58,9 @@ const Section1Container = ({ facultyId, facultyColor, onSectionComplete }) => {
       round3: data,
     }));
     setTotalScore((prev) => prev + data.score);
-    setCurrentRound(4);
+    // TODO: Move to Round 4 when implemented
+    // For now, skip to completion
+    setCurrentRound(5);
   }, []);
 
   // Handle completion of Round 4
@@ -132,18 +135,13 @@ const Section1Container = ({ facultyId, facultyColor, onSectionComplete }) => {
         />
       )}
 
-      {/* Round 3: Database Selection (TODO) */}
+      {/* Round 3: Database Selection */}
       {currentRound === 3 && (
-        <div className="placeholder-round">
-          <h3>Kolo 3: Výběr databáze</h3>
-          <p>Toto kolo bude implementováno později</p>
-          <button
-            onClick={() => handleRound3Complete({ score: 0 })}
-            className="skip-button"
-          >
-            Přeskočit (pro testování)
-          </button>
-        </div>
+        <DatabaseRanking
+          scenarioData={getRound3Data(facultyId)}
+          onComplete={handleRound3Complete}
+          facultyColor={facultyColor}
+        />
       )}
 
       {/* Round 4: Results Filter (TODO) */}
