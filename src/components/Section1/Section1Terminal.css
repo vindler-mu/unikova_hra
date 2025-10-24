@@ -1,0 +1,349 @@
+/**
+ * Terminal styling for Section 1 components
+ * Overrides modern light styles with terminal aesthetic
+ */
+
+/* Section1Container terminal styling */
+.section1-container {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  min-height: 100vh;
+  font-family: "Courier New", monospace !important;
+}
+
+.section-progress {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 2px solid #0000dc;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 220, 0.1);
+}
+
+.progress-title {
+  color: #0000dc;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.progress-rounds {
+  background: rgba(0, 0, 220, 0.1);
+  color: #0000dc;
+  font-family: "Courier New", monospace;
+}
+
+.progress-bar-fill {
+  background: linear-gradient(90deg, #0000dc, #4d4dff);
+}
+
+.progress-labels span {
+  color: #6b7280;
+  font-family: "Courier New", monospace;
+}
+
+.progress-labels span.active {
+  color: #0000dc;
+}
+
+/* Round components general */
+.keyword-selection-container,
+.boolean-query-builder,
+.database-ranking,
+.results-filter {
+  font-family: "Courier New", monospace !important;
+}
+
+/* Scenario headers */
+.scenario-card,
+.scenario-header {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #0000dc !important;
+  border-radius: 12px;
+}
+
+.scenario-title {
+  color: #0000dc !important;
+  font-family: "Courier New", monospace;
+}
+
+.scenario-field,
+.scenario-instruction,
+.scenario-question {
+  color: #374151 !important;
+  font-family: "Courier New", monospace;
+}
+
+.scenario-context,
+.scenario-goal {
+  background: rgba(0, 0, 220, 0.1) !important;
+  border-left: 3px solid #0000dc !important;
+  color: #1e40af !important;
+  font-family: "Courier New", monospace;
+}
+
+/* Word Bank (Round 1) */
+.word-bank-container,
+.selection-area-container {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #0000dc;
+  border-radius: 12px;
+}
+
+.word-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #d1d5db !important;
+  font-family: "Courier New", monospace;
+}
+
+.word-card:hover {
+  border-color: #0000dc !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 220, 0.15);
+}
+
+.word-card.selected {
+  border-color: #0000dc !important;
+  background: rgba(0, 0, 220, 0.05);
+}
+
+.word-text {
+  color: #1f2937;
+  font-family: "Courier New", monospace;
+}
+
+.selected-word-chip {
+  background: rgba(0, 0, 220, 0.1);
+  border: 1px solid #0000dc;
+  color: #0000dc;
+  font-family: "Courier New", monospace;
+}
+
+/* Query Builder (Round 2) */
+.term-bank,
+.query-area {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #0000dc;
+  border-radius: 12px;
+}
+
+.term-button {
+  border: 1.5px solid #d1d5db;
+  font-family: "Courier New", monospace;
+}
+
+.term-button:hover {
+  border-color: #0000dc;
+  background: rgba(0, 0, 220, 0.05);
+}
+
+.term-button.category-main {
+  border-color: #0000dc !important;
+  color: #0000dc !important;
+}
+
+.query-block.block-term {
+  background: rgba(0, 0, 220, 0.1) !important;
+  border: 1.5px solid #0000dc !important;
+  color: #0000dc !important;
+  font-family: "Courier New", monospace;
+}
+
+.operator-button {
+  border: 2px solid #374151;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.operator-button.operator-and {
+  border-color: #0000dc !important;
+  color: #0000dc !important;
+}
+
+.operator-button.operator-and:hover {
+  background: rgba(0, 0, 220, 0.1);
+}
+
+/* Database Ranking (Round 3) */
+.database-pool,
+.ranking-panel {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #0000dc;
+  border-radius: 12px;
+}
+
+.database-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #e5e7eb !important;
+  font-family: "Courier New", monospace;
+}
+
+.database-card:hover:not(.disabled) {
+  border-color: #0000dc !important;
+}
+
+.database-card.selected {
+  border-color: #0000dc !important;
+  background: rgba(0, 0, 220, 0.05);
+}
+
+.database-name {
+  color: #1f2937;
+  font-family: "Courier New", monospace;
+}
+
+.ranked-item {
+  background: rgba(0, 0, 220, 0.05);
+  border: 1px solid #0000dc;
+  font-family: "Courier New", monospace;
+}
+
+.rank-number {
+  background: #0000dc !important;
+  font-family: "Courier New", monospace;
+}
+
+/* Results Filter (Round 4) */
+.filters-container {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #0000dc;
+  border-radius: 12px;
+}
+
+.results-counter {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #0000dc;
+  border-radius: 12px;
+}
+
+.counter-number {
+  color: #0000dc !important;
+  font-family: "Courier New", monospace;
+}
+
+.counter-icon {
+  color: #0000dc !important;
+}
+
+.filter-label {
+  color: #1f2937;
+  font-family: "Courier New", monospace;
+}
+
+.radio-option,
+.checkbox-option {
+  border: 1px solid #e5e7eb;
+  font-family: "Courier New", monospace;
+}
+
+.radio-option:hover,
+.checkbox-option:hover {
+  background: rgba(0, 0, 220, 0.05);
+  border-color: #0000dc;
+}
+
+/* Buttons */
+.validate-button,
+.continue-button {
+  background: #0000dc !important;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.validate-button:hover,
+.continue-button:hover {
+  background: #0000aa !important;
+}
+
+.continue-button {
+  background: #22c55e !important;
+}
+
+.continue-button:hover {
+  background: #16a34a !important;
+}
+
+/* Validation results */
+.validation-result {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #0000dc !important;
+  border-radius: 12px;
+}
+
+.validation-result.valid {
+  background: rgba(34, 197, 94, 0.05);
+  border-color: #22c55e !important;
+}
+
+.validation-result.invalid {
+  background: rgba(239, 68, 68, 0.05);
+  border-color: #ef4444 !important;
+}
+
+.validation-feedback {
+  color: #374151;
+  font-family: "Courier New", monospace;
+}
+
+/* Score displays */
+.score-panel {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #0000dc;
+  border-radius: 12px;
+}
+
+.score-number {
+  color: #0000dc !important;
+  font-family: "Courier New", monospace;
+}
+
+.score-max,
+.score-percentage {
+  font-family: "Courier New", monospace;
+}
+
+.breakdown-label,
+.breakdown-points {
+  font-family: "Courier New", monospace;
+}
+
+/* Completion screen */
+.completion-screen {
+  font-family: "Courier New", monospace;
+}
+
+.completion-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid #0000dc;
+  border-radius: 12px;
+}
+
+.completion-title {
+  color: #0000dc;
+  font-family: "Courier New", monospace;
+}
+
+.completion-score {
+  background: rgba(0, 0, 220, 0.05);
+}
+
+/* Instructions */
+.instructions-panel {
+  background: rgba(0, 0, 220, 0.05);
+  border: 1px solid #0000dc;
+  font-family: "Courier New", monospace;
+}
+
+.instructions-list {
+  color: #4b5563;
+  font-family: "Courier New", monospace;
+}
+
+/* Performance badges */
+.performance-badge {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section1-container {
+    padding: 1rem;
+  }
+}
