@@ -135,7 +135,9 @@ export const game1Data = {
     terminalTitle: "🔐 IGRAM DIAGNOSTIKA",
   },
 
-  // Úkoly pro okruh 1 - zaměřené na obnovu IGRAM
+  // DEPRECATED: Old subtasks replaced by Section1 interactive rounds
+  // These questions are no longer used - Section1Container now handles Task 1
+  // Kept for compatibility with tasks array structure
   subtasks: [
     {
       title: "Rekonstrukce klíčových slov",

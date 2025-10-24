@@ -33,6 +33,7 @@ import { game4Data } from "./data/task/Task4Data";
 
 import { getEpilogueData, formatTime, getDamageLevel } from "./utils/gameLogic";
 import { useGameTimer } from "./hooks/useGameTimer";
+import Section1Container from "./components/Section1/Section1Container";
 import PersonalizationScreen from "./components/PersonalizationScreen";
 import DesktopScreen from "./components/DesktopScreen";
 import EmailScreen from "./components/EmailScreen";
@@ -500,14 +501,49 @@ const EscapeRoomGame = () => {
     );
   }
 
-  // Main game interface - TaskScreen with current task data
+  // Main game interface - Section1 for task 0, TaskScreen for others
+
+  // Task 1: Use new Section1 (interactive keyword selection)
+  if (currentTask === 0) {
+    return (
+      <Section1Container
+        facultyId={selectedFaculty?.id || "ff"}
+        facultyColor={selectedFaculty?.color}
+        onSectionComplete={(result) => {
+          console.log("Section 1 completed with score:", result.totalScore);
+
+          // Mark task as completed
+          setTaskStates((prev) => ({
+            ...prev,
+            task1: { ...prev.task1, completed: true },
+          }));
+
+          // Add collected digit
+          setCollectedDigits((prev) => [...prev, COLLECTED_DIGITS[0]]);
+
+          // Increase completed tasks
+          setCompletedTasks((prev) => prev + 1);
+
+          // Add to unlocked story segments
+          setUnlockedStorySegments((prev) => [...prev, 0]);
+
+          // Show debriefing
+          setTimeout(() => {
+            setShowDebriefing(0);
+          }, 100);
+        }}
+      />
+    );
+  }
+
+  // Tasks 2, 3, 4: Use traditional TaskScreen
   const currentTaskData = gameDataArray[currentTask];
 
   return (
     <TaskScreen
       currentTask={currentTask}
-      taskData={currentTaskData} // Pass specific task data instead of all tasks
-      tasks={tasks} // Keep this for backward compatibility if needed
+      taskData={currentTaskData}
+      tasks={tasks}
       taskStates={taskStates}
       timeLeft={timeLeft}
       databaseIntegrity={databaseIntegrity}
