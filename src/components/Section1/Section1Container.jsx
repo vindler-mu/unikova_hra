@@ -1,7 +1,13 @@
 import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import KeywordSelection from "./Round1_KeywordSelection/KeywordSelection";
+import BooleanQueryBuilder from "./Round2_BooleanOperators/BooleanQueryBuilder";
+import DatabaseRanking from "./Round3_DatabaseSelection/DatabaseRanking";
+import ResultsFilter from "./Round4_ResultsFilter/ResultsFilter";
 import { getRound1Data } from "../../data/section1/round1_data";
+import { getRound2Data } from "../../data/section1/round2_data";
+import { getRound3Data } from "../../data/section1/round3_data";
+import { getRound4Data } from "../../data/section1/round4_data";
 
 /**
  * Container component for Section 1: Academic Information Search
@@ -30,9 +36,8 @@ const Section1Container = ({ facultyId, facultyColor, onSectionComplete }) => {
       }));
       setTotalScore((prev) => prev + data.score);
 
-      // TODO: Move to Round 2 when implemented
-      // For now, complete the section
-      setCurrentRound(5); // 5 = completion screen
+      // Move to Round 2
+      setCurrentRound(2);
     },
     []
   );
@@ -44,6 +49,7 @@ const Section1Container = ({ facultyId, facultyColor, onSectionComplete }) => {
       round2: data,
     }));
     setTotalScore((prev) => prev + data.score);
+    // Move to Round 3
     setCurrentRound(3);
   }, []);
 
@@ -54,6 +60,7 @@ const Section1Container = ({ facultyId, facultyColor, onSectionComplete }) => {
       round3: data,
     }));
     setTotalScore((prev) => prev + data.score);
+    // Move to Round 4
     setCurrentRound(4);
   }, []);
 
@@ -120,46 +127,31 @@ const Section1Container = ({ facultyId, facultyColor, onSectionComplete }) => {
         />
       )}
 
-      {/* Round 2: Boolean Operators (TODO) */}
+      {/* Round 2: Boolean Operators */}
       {currentRound === 2 && (
-        <div className="placeholder-round">
-          <h3>Kolo 2: Booleovské operátory</h3>
-          <p>Toto kolo bude implementováno později</p>
-          <button
-            onClick={() => handleRound2Complete({ score: 0 })}
-            className="skip-button"
-          >
-            Přeskočit (pro testování)
-          </button>
-        </div>
+        <BooleanQueryBuilder
+          scenarioData={getRound2Data(facultyId)}
+          onComplete={handleRound2Complete}
+          facultyColor={facultyColor}
+        />
       )}
 
-      {/* Round 3: Database Selection (TODO) */}
+      {/* Round 3: Database Selection */}
       {currentRound === 3 && (
-        <div className="placeholder-round">
-          <h3>Kolo 3: Výběr databáze</h3>
-          <p>Toto kolo bude implementováno později</p>
-          <button
-            onClick={() => handleRound3Complete({ score: 0 })}
-            className="skip-button"
-          >
-            Přeskočit (pro testování)
-          </button>
-        </div>
+        <DatabaseRanking
+          scenarioData={getRound3Data(facultyId)}
+          onComplete={handleRound3Complete}
+          facultyColor={facultyColor}
+        />
       )}
 
-      {/* Round 4: Results Filter (TODO) */}
+      {/* Round 4: Results Filter */}
       {currentRound === 4 && (
-        <div className="placeholder-round">
-          <h3>Kolo 4: Filtrace výsledků</h3>
-          <p>Toto kolo bude implementováno později</p>
-          <button
-            onClick={() => handleRound4Complete({ score: 0 })}
-            className="skip-button"
-          >
-            Přeskočit (pro testování)
-          </button>
-        </div>
+        <ResultsFilter
+          scenarioData={getRound4Data(facultyId)}
+          onComplete={handleRound4Complete}
+          facultyColor={facultyColor}
+        />
       )}
 
       {/* Completion Screen */}
