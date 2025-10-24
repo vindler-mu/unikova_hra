@@ -31,7 +31,8 @@ import { game2Data } from "./data/task/Task2Data";
 import { game3Data } from "./data/task/Task3Data";
 import { game4Data } from "./data/task/Task4Data";
 
-import { getEpilogueData } from "./utils/gameLogic";
+import { getEpilogueData, formatTime, getDamageLevel } from "./utils/gameLogic";
+import { useGameTimer } from "./hooks/useGameTimer";
 import PersonalizationScreen from "./components/PersonalizationScreen";
 import DesktopScreen from "./components/DesktopScreen";
 import EmailScreen from "./components/EmailScreen";
@@ -66,14 +67,19 @@ const EscapeRoomGame = () => {
   const [showOverview, setShowOverview] = useState(false);
   const [currentTask, setCurrentTask] = useState(0);
   const [isGameComplete, setIsGameComplete] = useState(false);
-  const [gameTimedOut, setGameTimedOut] = useState(false);
 
   // Player data
   const [selectedFaculty, setSelectedFaculty] = useState(null);
   const [playerName, setPlayerName] = useState("");
 
+  // Game timer
+  const { timeLeft, gameTimedOut, setTimeLeft } = useGameTimer(
+    GAME_TIME,
+    gameStarted,
+    isGameComplete
+  );
+
   // Game state
-  const [timeLeft, setTimeLeft] = useState(GAME_TIME);
   const [taskStates, setTaskStates] = useState({
     task1: {
       unlocked: true,
@@ -127,23 +133,6 @@ const EscapeRoomGame = () => {
   const [showLibrarianInterlude, setShowLibrarianInterlude] = useState(null);
   const [unlockedStorySegments, setUnlockedStorySegments] = useState([]);
 
-  // Timer effect
-  useEffect(() => {
-    if (!gameStarted || isGameComplete || gameTimedOut) return;
-
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          setGameTimedOut(true);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [gameStarted, isGameComplete, gameTimedOut]);
-
   // Booting instructions effect
   useEffect(() => {
     if (terminalLoading && showHackerTerminal) {
@@ -183,21 +172,9 @@ const EscapeRoomGame = () => {
     }
   }, [finalCodeInput]);
 
-  // Helper functions
-  const formatTime = useCallback((seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, "0")}`;
-  }, []);
-
-  const getDamageLevel = useCallback(() => {
-    const lostIntegrity = 100 - databaseIntegrity;
-    if (lostIntegrity === 0) return "žádné";
-    if (lostIntegrity <= 15) return "minimální";
-    if (lostIntegrity <= 30) return "mírné";
-    if (lostIntegrity <= 50) return "střední";
-    if (lostIntegrity <= 75) return "vážné";
-    return "katastrofální";
+  // Memoized damage level calculator
+  const getDamageLevelText = useCallback(() => {
+    return getDamageLevel(databaseIntegrity);
   }, [databaseIntegrity]);
 
   // Handle answer submission
@@ -269,37 +246,46 @@ const EscapeRoomGame = () => {
   // Handle task selection
   const handleTaskSelect = useCallback(
     (index) => {
-      console.log("=== handleTaskSelect START ===");
-      console.log("Called with index:", index);
-      console.log("Current taskStates:", taskStates);
-      console.log("Current showBriefing:", showBriefing);
-      console.log("Current showOverview:", showOverview);
-
       const taskKey = `task${index + 1}`;
       const state = taskStates[taskKey];
 
-      console.log("taskKey:", taskKey);
-      console.log("state:", state);
-
       if (state.unlocked) {
         if (!state.completed) {
-          console.log("Setting showBriefing to:", index);
-          console.log("Setting showOverview to: false");
-          setShowOverview(false); // ← PŘIDÁNO!
+          setShowOverview(false);
           setShowBriefing(index);
-          console.log("showBriefing should be set to:", index);
         } else {
-          console.log("Task completed, setting currentTask to:", index);
           setCurrentTask(index);
         }
       } else if (index > 0) {
-        console.log("Showing password prompt for task:", index + 1);
         setShowPasswordPrompt(index + 1);
         setPasswordError("");
       }
-      console.log("=== handleTaskSelect END ===");
     },
-    [taskStates, showBriefing, showOverview]
+    [taskStates]
+  );
+
+  // Handle password submission
+  const handlePasswordSubmit = useCallback(
+    (taskNumber) => {
+      const taskKey = `task${taskNumber}`;
+      const expectedPassword = TASK_PASSWORDS[taskKey];
+
+      if (passwordInput.toLowerCase().trim() === expectedPassword) {
+        playSound("success");
+        setTaskStates((prev) => ({
+          ...prev,
+          [taskKey]: { ...prev[taskKey], unlocked: true, currentSubtask: 0 },
+        }));
+        setShowPasswordPrompt(null);
+        setPasswordInput("");
+        setPasswordError("");
+        setShowBriefing(taskNumber - 1);
+      } else {
+        playSound("error");
+        setPasswordError("Nesprávné heslo! Zkuste znovu.");
+      }
+    },
+    [passwordInput]
   );
 
   // Handle task completion (for debriefing)
@@ -388,14 +374,14 @@ const EscapeRoomGame = () => {
         playerName={playerName}
         selectedFaculty={selectedFaculty}
         formatTime={formatTime}
-        getDamageLevel={getDamageLevel}
+        getDamageLevel={getDamageLevelText}
         COLLECTED_DIGITS={COLLECTED_DIGITS}
         GAME_TIME={GAME_TIME}
         onStart={() => {
           setShowOverview(false);
           setGameStarted(true);
         }}
-        onTaskSelect={handleTaskSelect} // ← PŘIDÁNO
+        onTaskSelect={handleTaskSelect}
       />
     );
   }
@@ -413,7 +399,7 @@ const EscapeRoomGame = () => {
         collectedDigits={collectedDigits}
         wrongAnswersCount={wrongAnswersCount}
         formatTime={formatTime}
-        getDamageLevel={getDamageLevel}
+        getDamageLevel={getDamageLevelText}
         COLLECTED_DIGITS={COLLECTED_DIGITS}
         GAME_TIME={GAME_TIME}
         onStart={() => {
@@ -532,7 +518,7 @@ const EscapeRoomGame = () => {
       showHint={showHint}
       setShowHint={setShowHint}
       formatTime={formatTime}
-      getDamageLevel={getDamageLevel}
+      getDamageLevel={getDamageLevelText}
       handleAnswer={handleAnswer}
       handleTaskSelect={handleTaskSelect}
       onShowFinalCode={() => setShowFinalCodePrompt(true)}
