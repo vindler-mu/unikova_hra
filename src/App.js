@@ -35,6 +35,7 @@ import { getEpilogueData, formatTime, getDamageLevel } from "./utils/gameLogic";
 import { useGameTimer } from "./hooks/useGameTimer";
 import Section1Container from "./components/Section1/Section1Container";
 import Section2Container from "./components/Section2/Section2Container";
+import Section3Container from "./components/Section3/Section3Container";
 import PersonalizationScreen from "./components/PersonalizationScreen";
 import DesktopScreen from "./components/DesktopScreen";
 import EmailScreen from "./components/EmailScreen";
@@ -570,7 +571,40 @@ const EscapeRoomGame = () => {
     );
   }
 
-  // Tasks 3, 4: Use traditional TaskScreen
+  // Task 3: Use Section3 (research skills - concept mapping & literature structuring)
+  if (currentTask === 2) {
+    return (
+      <Section3Container
+        facultyId={selectedFaculty?.id || "ff"}
+        facultyColor={selectedFaculty?.color}
+        onSectionComplete={(result) => {
+          console.log("Section 3 completed with score:", result.totalScore);
+
+          // Mark task as completed
+          setTaskStates((prev) => ({
+            ...prev,
+            task3: { ...prev.task3, completed: true },
+          }));
+
+          // Add collected digit
+          setCollectedDigits((prev) => [...prev, COLLECTED_DIGITS[2]]);
+
+          // Increase completed tasks
+          setCompletedTasks((prev) => prev + 1);
+
+          // Add to unlocked story segments
+          setUnlockedStorySegments((prev) => [...prev, 2]);
+
+          // Show debriefing
+          setTimeout(() => {
+            setShowDebriefing(2);
+          }, 100);
+        }}
+      />
+    );
+  }
+
+  // Task 4: Use traditional TaskScreen
   const currentTaskData = gameDataArray[currentTask];
 
   return (

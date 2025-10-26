@@ -1,0 +1,34 @@
+/* Section 3 Container - Completion Screen - Reuses Section2 styles */
+.section3-container.section-completion { padding: 40px 20px; max-width: 800px; margin: 0 auto; }
+.completion-header { text-align: center; margin-bottom: 40px; }
+.completion-header h2 { font-size: 2.5rem; font-weight: 800; color: #1a202c; margin-bottom: 10px; }
+.completion-header h3 { font-size: 1.3rem; font-weight: 600; color: #4a5568; }
+
+.final-score { margin-bottom: 40px; }
+.score-card { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 30px; border-radius: 16px; text-align: center; box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2); border: 3px solid #22c55e; }
+.score-label { font-size: 1.1rem; color: #166534; font-weight: 600; margin-bottom: 10px; }
+.score-value { font-size: 3.5rem; font-weight: 900; color: #166534; margin-bottom: 10px; }
+.score-percentage { font-size: 1.8rem; font-weight: 700; color: #22c55e; }
+
+.rounds-summary { margin-bottom: 40px; }
+.rounds-summary h3 { font-size: 1.4rem; font-weight: 700; color: #1a202c; margin-bottom: 20px; }
+.summary-grid { display: grid; gap: 15px; }
+.summary-item { display: flex; align-items: center; gap: 15px; padding: 20px; background: white; border: 2px solid #e2e8f0; border-radius: 12px; transition: all 0.3s ease; }
+.summary-item:hover { border-color: #cbd5e0; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+.round-icon { font-size: 2rem; }
+.summary-item strong { font-size: 1.05rem; color: #1a202c; display: block; margin-bottom: 5px; }
+.round-score { font-size: 0.95rem; color: #22c55e; font-weight: 600; }
+
+.completion-message { text-align: center; padding: 25px; background: linear-gradient(135deg, #e0f2fe 0%, #bfdbfe 100%); border-radius: 12px; margin-bottom: 30px; }
+.completion-message p { font-size: 1.15rem; color: #1e40af; font-weight: 500; margin: 0; line-height: 1.6; }
+
+.action-buttons { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
+.continue-btn { padding: 14px 32px; font-size: 1rem; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; border: none; background: #0000dc; color: white; }
+.continue-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 220, 0.4); }
+
+@media (max-width: 768px) {
+  .section3-container.section-completion { padding: 20px 15px; }
+  .completion-header h2 { font-size: 2rem; }
+  .score-value { font-size: 2.5rem; }
+  .score-percentage { font-size: 1.4rem; }
+}
