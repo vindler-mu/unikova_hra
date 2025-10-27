@@ -36,6 +36,7 @@ import { useGameTimer } from "./hooks/useGameTimer";
 import Section1Container from "./components/Section1/Section1Container";
 import Section2Container from "./components/Section2/Section2Container";
 import Section3Container from "./components/Section3/Section3Container";
+import Section4Container from "./components/Section4/Section4Container";
 import PersonalizationScreen from "./components/PersonalizationScreen";
 import DesktopScreen from "./components/DesktopScreen";
 import EmailScreen from "./components/EmailScreen";
@@ -604,7 +605,40 @@ const EscapeRoomGame = () => {
     );
   }
 
-  // Task 4: Use traditional TaskScreen
+  // Task 4: Use Section4 (communication of results)
+  if (currentTask === 3) {
+    return (
+      <Section4Container
+        facultyId={selectedFaculty?.id || "ff"}
+        facultyColor={selectedFaculty?.color}
+        onSectionComplete={(result) => {
+          console.log("Section 4 completed with score:", result.totalScore);
+
+          // Mark task as completed
+          setTaskStates((prev) => ({
+            ...prev,
+            task4: { ...prev.task4, completed: true },
+          }));
+
+          // Add collected digit
+          setCollectedDigits((prev) => [...prev, COLLECTED_DIGITS[3]]);
+
+          // Increase completed tasks
+          setCompletedTasks((prev) => prev + 1);
+
+          // Add to unlocked story segments
+          setUnlockedStorySegments((prev) => [...prev, 3]);
+
+          // Show debriefing
+          setTimeout(() => {
+            setShowDebriefing(3);
+          }, 100);
+        }}
+      />
+    );
+  }
+
+  // Fallback: Use traditional TaskScreen (should not be reached)
   const currentTaskData = gameDataArray[currentTask];
 
   return (
