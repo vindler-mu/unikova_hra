@@ -34,6 +34,9 @@ import { game4Data } from "./data/task/Task4Data";
 import { getEpilogueData, formatTime, getDamageLevel } from "./utils/gameLogic";
 import { useGameTimer } from "./hooks/useGameTimer";
 import Section1Container from "./components/Section1/Section1Container";
+import Section2Container from "./components/Section2/Section2Container";
+import Section3Container from "./components/Section3/Section3Container";
+import Section4Container from "./components/Section4/Section4Container";
 import PersonalizationScreen from "./components/PersonalizationScreen";
 import DesktopScreen from "./components/DesktopScreen";
 import EmailScreen from "./components/EmailScreen";
@@ -536,7 +539,106 @@ const EscapeRoomGame = () => {
     );
   }
 
-  // Tasks 2, 3, 4: Use traditional TaskScreen
+  // Task 2: Use Section2 (information evaluation)
+  if (currentTask === 1) {
+    return (
+      <Section2Container
+        facultyId={selectedFaculty?.id || "ff"}
+        facultyColor={selectedFaculty?.color}
+        onSectionComplete={(result) => {
+          console.log("Section 2 completed with score:", result.totalScore);
+
+          // Mark task as completed
+          setTaskStates((prev) => ({
+            ...prev,
+            task2: { ...prev.task2, completed: true },
+          }));
+
+          // Add collected digit
+          setCollectedDigits((prev) => [...prev, COLLECTED_DIGITS[1]]);
+
+          // Increase completed tasks
+          setCompletedTasks((prev) => prev + 1);
+
+          // Add to unlocked story segments
+          setUnlockedStorySegments((prev) => [...prev, 1]);
+
+          // Show debriefing
+          setTimeout(() => {
+            setShowDebriefing(1);
+          }, 100);
+        }}
+      />
+    );
+  }
+
+  // Task 3: Use Section3 (research skills - concept mapping & literature structuring)
+  if (currentTask === 2) {
+    return (
+      <Section3Container
+        facultyId={selectedFaculty?.id || "ff"}
+        facultyColor={selectedFaculty?.color}
+        onSectionComplete={(result) => {
+          console.log("Section 3 completed with score:", result.totalScore);
+
+          // Mark task as completed
+          setTaskStates((prev) => ({
+            ...prev,
+            task3: { ...prev.task3, completed: true },
+          }));
+
+          // Add collected digit
+          setCollectedDigits((prev) => [...prev, COLLECTED_DIGITS[2]]);
+
+          // Increase completed tasks
+          setCompletedTasks((prev) => prev + 1);
+
+          // Add to unlocked story segments
+          setUnlockedStorySegments((prev) => [...prev, 2]);
+
+          // Show debriefing
+          setTimeout(() => {
+            setShowDebriefing(2);
+          }, 100);
+        }}
+      />
+    );
+  }
+
+  // Task 4: Use Section4 (communication of results)
+  if (currentTask === 3) {
+    return (
+      <Section4Container
+        facultyId={selectedFaculty?.id || "ff"}
+        facultyColor={selectedFaculty?.color}
+        onSectionComplete={(result) => {
+          console.log("Section 4 completed with score:", result.totalScore);
+
+          // Mark task as completed
+          setTaskStates((prev) => ({
+            ...prev,
+            task4: { ...prev.task4, completed: true },
+          }));
+
+          // Add collected digit
+          setCollectedDigits((prev) => [...prev, COLLECTED_DIGITS[3]]);
+
+          // Increase completed tasks
+          setCompletedTasks((prev) => prev + 1);
+
+          // Add to unlocked story segments
+          setUnlockedStorySegments((prev) => [...prev, 3]);
+
+          // Show debriefing
+          setTimeout(() => {
+            setShowDebriefing(3);
+          }, 100);
+        }}
+      />
+    );
+  }
+
+  // Fallback: Use traditional TaskScreen (should not be reached)
   const currentTaskData = gameDataArray[currentTask];
 
   return (

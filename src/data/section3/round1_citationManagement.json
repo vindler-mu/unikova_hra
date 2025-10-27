@@ -1,0 +1,280 @@
+{
+  "facultyVariants": {
+    "ff": {
+      "scenario": "Roztřiď následující zdroje do správných kategorií podle typu publikace. Můžeš si zobrazit náhled citace.",
+      "categories": [
+        {
+          "id": "books",
+          "label": "Monografie a knihy",
+          "icon": "📚",
+          "description": "Samostatně publikované knihy a monografie"
+        },
+        {
+          "id": "articles",
+          "label": "Časopisecké články",
+          "icon": "📄",
+          "description": "Články z vědeckých časopisů"
+        },
+        {
+          "id": "web",
+          "label": "Webové zdroje",
+          "icon": "🌐",
+          "description": "Online zdroje a webové stránky"
+        }
+      ],
+      "sources": [
+        {
+          "id": "src1",
+          "correctCategory": "books",
+          "displayData": {
+            "authors": "Eco, U.",
+            "year": 2011,
+            "title": "Jak napsat diplomovou práci",
+            "type": "Kniha"
+          },
+          "citationData": {
+            "apa": "Eco, U. (2011). Jak napsat diplomovou práci. Argo.",
+            "iso690": "ECO, Umberto. Jak napsat diplomovou práci. Praha: Argo, 2011. ISBN 978-80-257-0509-4."
+          }
+        },
+        {
+          "id": "src2",
+          "correctCategory": "articles",
+          "displayData": {
+            "authors": "Hradil, P.",
+            "year": 2015,
+            "title": "Digitální knihovny a informační gramotnost",
+            "type": "Článek"
+          },
+          "citationData": {
+            "apa": "Hradil, P. (2015). Digitální knihovny a informační gramotnost. Ikaros, 19(5).",
+            "iso690": "HRADIL, Petr. Digitální knihovny a informační gramotnost. Ikaros [online]. 2015, 19(5) [cit. 2024-01-15]."
+          }
+        },
+        {
+          "id": "src3",
+          "correctCategory": "web",
+          "displayData": {
+            "authors": "Masarykova univerzita",
+            "year": 2023,
+            "title": "Průvodce citováním zdrojů",
+            "type": "Web"
+          },
+          "citationData": {
+            "apa": "Masarykova univerzita. (2023). Průvodce citováním zdrojů. https://is.muni.cz/citace",
+            "iso690": "Masarykova univerzita. Průvodce citováním zdrojů [online]. 2023 [cit. 2024-01-15]. Dostupné z: https://is.muni.cz/citace"
+          }
+        },
+        {
+          "id": "src4",
+          "correctCategory": "books",
+          "displayData": {
+            "authors": "Booth, W. C., Colomb, G. G., Williams, J. M.",
+            "year": 2008,
+            "title": "The Craft of Research",
+            "type": "Kniha"
+          },
+          "citationData": {
+            "apa": "Booth, W. C., Colomb, G. G., & Williams, J. M. (2008). The craft of research (3rd ed.). University of Chicago Press.",
+            "iso690": "BOOTH, Wayne C., Gregory G. COLOMB a Joseph M. WILLIAMS. The craft of research. 3rd ed. Chicago: University of Chicago Press, 2008. ISBN 978-0-226-06568-4."
+          }
+        },
+        {
+          "id": "src5",
+          "correctCategory": "articles",
+          "displayData": {
+            "authors": "Vaska, M., Chan, C.",
+            "year": 2018,
+            "title": "Writing a Literature Review",
+            "type": "Článek"
+          },
+          "citationData": {
+            "apa": "Vaska, M., & Chan, C. (2018). Writing a literature review. Journal of Academic Librarianship, 44(2), 284-288.",
+            "iso690": "VASKA, Marcus a Cynthia CHAN. Writing a literature review. Journal of Academic Librarianship. 2018, 44(2), 284-288. ISSN 0099-1333."
+          }
+        },
+        {
+          "id": "src6",
+          "correctCategory": "web",
+          "displayData": {
+            "authors": "Wikipedia contributors",
+            "year": 2024,
+            "title": "Information literacy",
+            "type": "Web"
+          },
+          "citationData": {
+            "apa": "Wikipedia contributors. (2024). Information literacy. Wikipedia. https://en.wikipedia.org/wiki/Information_literacy",
+            "iso690": "Wikipedia contributors. Information literacy [online]. Wikipedia, 2024 [cit. 2024-01-15]. Dostupné z: https://en.wikipedia.org/wiki/Information_literacy"
+          }
+        },
+        {
+          "id": "src7",
+          "correctCategory": "articles",
+          "displayData": {
+            "authors": "Škyřík, P.",
+            "year": 2016,
+            "title": "Informační gramotnost v akademickém prostředí",
+            "type": "Článek"
+          },
+          "citationData": {
+            "apa": "Škyřík, P. (2016). Informační gramotnost v akademickém prostředí. ProInflow, 8(2), 45-52.",
+            "iso690": "ŠKYŘÍK, Petr. Informační gramotnost v akademickém prostředí. ProInflow. 2016, 8(2), 45-52. ISSN 1804-2406."
+          }
+        },
+        {
+          "id": "src8",
+          "correctCategory": "books",
+          "displayData": {
+            "authors": "Horsley, M., Knight, B., Huntly, H.",
+            "year": 2010,
+            "title": "The Role of Textbooks and Educational Media",
+            "type": "Kniha"
+          },
+          "citationData": {
+            "apa": "Horsley, M., Knight, B., & Huntly, H. (2010). The role of textbooks and educational media. IARTEM.",
+            "iso690": "HORSLEY, Mike, Bruce KNIGHT a Helen HUNTLY. The role of textbooks and educational media. IARTEM, 2010. ISBN 978-0-9807617-0-9."
+          }
+        }
+      ],
+      "citationStyle": "APA7"
+    },
+    "prf": {
+      "scenario": "Roztřiď následující právnické zdroje do správných kategorií podle typu publikace.",
+      "categories": [
+        {
+          "id": "books",
+          "label": "Monografie a komentáře",
+          "icon": "📚",
+          "description": "Právnické monografie a komentáře k zákonům"
+        },
+        {
+          "id": "articles",
+          "label": "Časopisecké články",
+          "icon": "📄",
+          "description": "Články z právnických časopisů"
+        },
+        {
+          "id": "web",
+          "label": "Online databáze a weby",
+          "icon": "🌐",
+          "description": "Právní databáze a webové zdroje"
+        }
+      ],
+      "sources": [
+        {
+          "id": "src1",
+          "correctCategory": "books",
+          "displayData": {
+            "authors": "Knapp, V.",
+            "year": 1995,
+            "title": "Teorie práva",
+            "type": "Kniha"
+          },
+          "citationData": {
+            "apa": "Knapp, V. (1995). Teorie práva. C.H. Beck.",
+            "iso690": "KNAPP, Viktor. Teorie práva. Praha: C.H. Beck, 1995. ISBN 80-7179-028-1."
+          }
+        },
+        {
+          "id": "src2",
+          "correctCategory": "articles",
+          "displayData": {
+            "authors": "Gerloch, A.",
+            "year": 2018,
+            "title": "K některým otázkám interpretace práva",
+            "type": "Článek"
+          },
+          "citationData": {
+            "apa": "Gerloch, A. (2018). K některým otázkám interpretace práva. Právník, 157(6), 481-495.",
+            "iso690": "GERLOCH, Aleš. K některým otázkám interpretace práva. Právník. 2018, 157(6), 481-495. ISSN 0231-6625."
+          }
+        },
+        {
+          "id": "src3",
+          "correctCategory": "web",
+          "displayData": {
+            "authors": "Ministerstvo spravedlnosti ČR",
+            "year": 2023,
+            "title": "Sbírka zákonů online",
+            "type": "Web"
+          },
+          "citationData": {
+            "apa": "Ministerstvo spravedlnosti ČR. (2023). Sbírka zákonů online. https://www.zakonyprolidi.cz",
+            "iso690": "Ministerstvo spravedlnosti ČR. Sbírka zákonů online [online]. 2023 [cit. 2024-01-15]. Dostupné z: https://www.zakonyprolidi.cz"
+          }
+        },
+        {
+          "id": "src4",
+          "correctCategory": "books",
+          "displayData": {
+            "authors": "Boguszak, J., Čapek, J., Gerloch, A.",
+            "year": 2004,
+            "title": "Teorie práva",
+            "type": "Kniha"
+          },
+          "citationData": {
+            "apa": "Boguszak, J., Čapek, J., & Gerloch, A. (2004). Teorie práva (2. vyd.). ASPI Publishing.",
+            "iso690": "BOGUSZAK, Jiří, Jiří ČAPEK a Aleš GERLOCH. Teorie práva. 2. vyd. Praha: ASPI Publishing, 2004. ISBN 80-7357-030-0."
+          }
+        },
+        {
+          "id": "src5",
+          "correctCategory": "articles",
+          "displayData": {
+            "authors": "Wintr, J.",
+            "year": 2017,
+            "title": "Interpretace ústavního práva",
+            "type": "Článek"
+          },
+          "citationData": {
+            "apa": "Wintr, J. (2017). Interpretace ústavního práva. Jurisprudence, 26(4), 3-12.",
+            "iso690": "WINTR, Jan. Interpretace ústavního práva. Jurisprudence. 2017, 26(4), 3-12. ISSN 1802-3843."
+          }
+        },
+        {
+          "id": "src6",
+          "correctCategory": "web",
+          "displayData": {
+            "authors": "ASPI",
+            "year": 2024,
+            "title": "Právní informační systém",
+            "type": "Web"
+          },
+          "citationData": {
+            "apa": "ASPI. (2024). Právní informační systém. https://www.aspi.cz",
+            "iso690": "ASPI. Právní informační systém [online]. 2024 [cit. 2024-01-15]. Dostupné z: https://www.aspi.cz"
+          }
+        },
+        {
+          "id": "src7",
+          "correctCategory": "articles",
+          "displayData": {
+            "authors": "Kühn, Z.",
+            "year": 2016,
+            "title": "Aplikace práva soudcem v éře středoevropského komunismu",
+            "type": "Článek"
+          },
+          "citationData": {
+            "apa": "Kühn, Z. (2016). Aplikace práva soudcem v éře středoevropského komunismu. Acta Universitatis Carolinae Iuridica, 62(1), 23-45.",
+            "iso690": "KÜHN, Zdeněk. Aplikace práva soudcem v éře středoevropského komunismu. Acta Universitatis Carolinae Iuridica. 2016, 62(1), 23-45. ISSN 0323-0619."
+          }
+        },
+        {
+          "id": "src8",
+          "correctCategory": "books",
+          "displayData": {
+            "authors": "Melzer, F.",
+            "year": 2013,
+            "title": "Metodologie nalézání práva",
+            "type": "Kniha"
+          },
+          "citationData": {
+            "apa": "Melzer, F. (2013). Metodologie nalézání práva. C.H. Beck.",
+            "iso690": "MELZER, Filip. Metodologie nalézání práva. Praha: C.H. Beck, 2013. ISBN 978-80-7400-432-1."
+          }
+        }
+      ],
+      "citationStyle": "APA7"
+    }
+  }
+}

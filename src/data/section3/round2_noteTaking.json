@@ -1,0 +1,205 @@
+{
+  "facultyVariants": {
+    "ff": {
+      "scenario": "Přečti si odstavec z vědeckého článku a vytvoř si poznámky: zvýrazni klíčové části, označ je štítky a napiš krátkou syntézu.",
+      "articleText": [
+        {
+          "id": "sent1",
+          "text": "Sociální média dramaticky změnila způsob, jakým lidé přistupují k informacím a komunikují o politických tématech.",
+          "correctHighlight": "goal",
+          "correctTags": ["introduction", "context"]
+        },
+        {
+          "id": "sent2",
+          "text": "Výzkum byl proveden formou kvantitativní analýzy dat ze tří hlavních platforem - Facebook, Twitter a Instagram - během období 2015-2020.",
+          "correctHighlight": "method",
+          "correctTags": ["methodology", "data"]
+        },
+        {
+          "id": "sent3",
+          "text": "Analýza zahrnovala 2,4 milionu příspěvků od 150 000 uživatelů v pěti evropských zemích.",
+          "correctHighlight": "method",
+          "correctTags": ["methodology", "sample"]
+        },
+        {
+          "id": "sent4",
+          "text": "Výsledky ukázaly, že 68% uživatelů je vystaveno primárně obsahu, který potvrzuje jejich existující politické názory.",
+          "correctHighlight": "results",
+          "correctTags": ["findings", "key_result"]
+        },
+        {
+          "id": "sent5",
+          "text": "Tento fenomén byl výrazněji patrný u starších uživatelů (50+) než u mladších věkových skupin.",
+          "correctHighlight": "results",
+          "correctTags": ["findings", "demographics"]
+        },
+        {
+          "id": "sent6",
+          "text": "Studie dochází k závěru, že algoritmické filtrování obsahu přispívá k politické polarizaci a vytváření filtračních bublin.",
+          "correctHighlight": "conclusion",
+          "correctTags": ["conclusion", "implication"]
+        },
+        {
+          "id": "sent7",
+          "text": "Podobné závěry prezentovali také Bakshy et al. (2015) a Sunstein (2017) ve svých studiích.",
+          "correctHighlight": "citation",
+          "correctTags": ["citation", "literature"]
+        }
+      ],
+      "highlightCategories": [
+        {
+          "id": "goal",
+          "label": "Cíl/Kontext",
+          "color": "#fef08a",
+          "description": "Úvod, výzkumná otázka, kontext"
+        },
+        {
+          "id": "method",
+          "label": "Metodologie",
+          "color": "#bfdbfe",
+          "description": "Postup, metody, data"
+        },
+        {
+          "id": "results",
+          "label": "Výsledky",
+          "color": "#bbf7d0",
+          "description": "Zjištění, data, statistiky"
+        },
+        {
+          "id": "conclusion",
+          "label": "Závěry",
+          "color": "#fcd34d",
+          "description": "Implikace, doporučení"
+        },
+        {
+          "id": "citation",
+          "label": "Citace",
+          "color": "#fecaca",
+          "description": "Odkazy na jiné zdroje"
+        }
+      ],
+      "availableTags": [
+        { "id": "introduction", "label": "Úvod" },
+        { "id": "context", "label": "Kontext" },
+        { "id": "methodology", "label": "Metodologie" },
+        { "id": "data", "label": "Data" },
+        { "id": "sample", "label": "Vzorek" },
+        { "id": "findings", "label": "Zjištění" },
+        { "id": "key_result", "label": "Klíčový výsledek" },
+        { "id": "demographics", "label": "Demografie" },
+        { "id": "conclusion", "label": "Závěr" },
+        { "id": "implication", "label": "Implikace" },
+        { "id": "citation", "label": "Citace" },
+        { "id": "literature", "label": "Literatura" }
+      ],
+      "noteSynthesisPrompt": "Na základě zvýrazněných částí napiš stručnou syntézu (50-200 znaků): Co bylo cílem studie, jak probíhala a k čemu došla?",
+      "noteSynthesisKeywords": [
+        "sociální média",
+        "politická polarizace",
+        "filtrace",
+        "algoritmy",
+        "bubliny"
+      ]
+    },
+    "prf": {
+      "scenario": "Přečti si odstavec z právnického článku a vytvoř si poznámky: zvýrazni klíčové části, označ je štítky a napiš krátkou syntézu.",
+      "articleText": [
+        {
+          "id": "sent1",
+          "text": "Otázka výkladu právních norem je jedním ze základních problémů právní teorie a praxe.",
+          "correctHighlight": "goal",
+          "correctTags": ["introduction", "problem"]
+        },
+        {
+          "id": "sent2",
+          "text": "Tento článek analyzuje judikaturu Nejvyššího soudu ČR v období 2010-2020 s důrazem na interpretační metody.",
+          "correctHighlight": "method",
+          "correctTags": ["methodology", "scope"]
+        },
+        {
+          "id": "sent3",
+          "text": "Bylo analyzováno 245 rozhodnutí týkajících se občanského práva, konkrétně smluvních vztahů.",
+          "correctHighlight": "method",
+          "correctTags": ["methodology", "sample"]
+        },
+        {
+          "id": "sent4",
+          "text": "Výsledky ukazují, že v 72% případů soud použil gramatický výklad a v 45% případů teleologický výklad.",
+          "correctHighlight": "results",
+          "correctTags": ["findings", "statistics"]
+        },
+        {
+          "id": "sent5",
+          "text": "Historický výklad byl použit pouze ve 12% analyzovaných rozhodnutí.",
+          "correctHighlight": "results",
+          "correctTags": ["findings", "statistics"]
+        },
+        {
+          "id": "sent6",
+          "text": "Závěrem lze konstatovat, že Nejvyšší soud preferuje kombinaci gramatického a teleologického výkladu při interpretaci nejasných právních norem.",
+          "correctHighlight": "conclusion",
+          "correctTags": ["conclusion", "implication"]
+        },
+        {
+          "id": "sent7",
+          "text": "Tento přístup je v souladu se závěry Gerlochovy teorie právní interpretace (Gerloch, 2018).",
+          "correctHighlight": "citation",
+          "correctTags": ["citation", "theory"]
+        }
+      ],
+      "highlightCategories": [
+        {
+          "id": "goal",
+          "label": "Cíl/Kontext",
+          "color": "#fef08a",
+          "description": "Úvod, právní problém, kontext"
+        },
+        {
+          "id": "method",
+          "label": "Metodologie",
+          "color": "#bfdbfe",
+          "description": "Postup, analýza, rozsah"
+        },
+        {
+          "id": "results",
+          "label": "Výsledky",
+          "color": "#bbf7d0",
+          "description": "Zjištění, statistiky"
+        },
+        {
+          "id": "conclusion",
+          "label": "Závěry",
+          "color": "#fcd34d",
+          "description": "Závěry, doporučení"
+        },
+        {
+          "id": "citation",
+          "label": "Citace",
+          "color": "#fecaca",
+          "description": "Odkazy na teorii, judikaturu"
+        }
+      ],
+      "availableTags": [
+        { "id": "introduction", "label": "Úvod" },
+        { "id": "problem", "label": "Právní problém" },
+        { "id": "methodology", "label": "Metodologie" },
+        { "id": "scope", "label": "Rozsah" },
+        { "id": "sample", "label": "Vzorek" },
+        { "id": "findings", "label": "Zjištění" },
+        { "id": "statistics", "label": "Statistiky" },
+        { "id": "conclusion", "label": "Závěr" },
+        { "id": "implication", "label": "Důsledky" },
+        { "id": "citation", "label": "Citace" },
+        { "id": "theory", "label": "Teorie" }
+      ],
+      "noteSynthesisPrompt": "Na základě zvýrazněných částí napiš stručnou syntézu (50-200 znaků): Co bylo předmětem analýzy, jak probíhala a k čemu došla?",
+      "noteSynthesisKeywords": [
+        "výklad",
+        "interpretace",
+        "gramatický",
+        "teleologický",
+        "Nejvyšší soud"
+      ]
+    }
+  }
+}
