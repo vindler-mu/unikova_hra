@@ -1,0 +1,232 @@
+{
+  "facultyVariants": {
+    "ff": {
+      "scenario": "Přečti si výzkumný scénář a roztřiď věty do správných sekcí abstraktu. Některé věty nepatří nikam.",
+      "researchContext": {
+        "title": "Vliv sociálních médií na politickou polarizaci",
+        "field": "Politologie",
+        "topic": "Sociální média a politický diskurz"
+      },
+      "abstractSections": [
+        {
+          "id": "background",
+          "label": "Kontext a cíl",
+          "description": "Úvod, výzkumná otázka, kontext",
+          "minSentences": 2,
+          "maxSentences": 3
+        },
+        {
+          "id": "methods",
+          "label": "Metodologie",
+          "description": "Postup, metody, vzorek",
+          "minSentences": 2,
+          "maxSentences": 3
+        },
+        {
+          "id": "results",
+          "label": "Výsledky",
+          "description": "Zjištění, data",
+          "minSentences": 2,
+          "maxSentences": 3
+        },
+        {
+          "id": "conclusions",
+          "label": "Závěry",
+          "description": "Implikace, doporučení",
+          "minSentences": 1,
+          "maxSentences": 2
+        }
+      ],
+      "sentences": [
+        {
+          "id": "s1",
+          "text": "Sociální média dramaticky změnila způsob, jakým lidé přistupují k politickým informacím a diskutují o politických tématech.",
+          "correctSection": "background",
+          "order": 1
+        },
+        {
+          "id": "s2",
+          "text": "Tato studie zkoumá, zda používání sociálních médií přispívá k politické polarizaci mezi mladými dospělými.",
+          "correctSection": "background",
+          "order": 2
+        },
+        {
+          "id": "s3",
+          "text": "Provedli jsme kvantitativní analýzu dat ze tří hlavních platforem - Facebook, Twitter a Instagram - během období 2015-2020.",
+          "correctSection": "methods",
+          "order": 1
+        },
+        {
+          "id": "s4",
+          "text": "Vzorek zahrnoval 2,4 milionu příspěvků od 150 000 uživatelů z pěti evropských zemí.",
+          "correctSection": "methods",
+          "order": 2
+        },
+        {
+          "id": "s5",
+          "text": "Výsledky ukázaly, že 68% uživatelů je vystaveno primárně obsahu, který potvrzuje jejich existující politické názory.",
+          "correctSection": "results",
+          "order": 1
+        },
+        {
+          "id": "s6",
+          "text": "Tento fenomén byl výrazněji patrný u starších uživatelů (50+) než u mladších věkových skupin.",
+          "correctSection": "results",
+          "order": 2
+        },
+        {
+          "id": "s7",
+          "text": "Studie dochází k závěru, že algoritmické filtrování obsahu přispívá k politické polarizaci a vytváření filtračních bublin.",
+          "correctSection": "conclusions",
+          "order": 1
+        },
+        {
+          "id": "s8",
+          "text": "Doporučujeme implementaci transparentnějších algoritmů a podporu diverzity obsahu v uživatelských feedech.",
+          "correctSection": "conclusions",
+          "order": 2
+        },
+        {
+          "id": "s9",
+          "text": "V budoucnu plánujeme rozšířit výzkum o kvalitativní rozhovory s uživateli.",
+          "correctSection": "none",
+          "order": 0,
+          "isRedHerring": true
+        },
+        {
+          "id": "s10",
+          "text": "Autoři děkují grantové agentuře za finanční podporu projektu.",
+          "correctSection": "none",
+          "order": 0,
+          "isRedHerring": true
+        },
+        {
+          "id": "s11",
+          "text": "Použili jsme machine learning algoritmy pro klasifikaci sentimentu příspěvků.",
+          "correctSection": "methods",
+          "order": 3
+        },
+        {
+          "id": "s12",
+          "text": "Statistická analýza potvrdila signifikantní korelaci mezi intenzitou používání sociálních médií a mírou politické polarizace.",
+          "correctSection": "results",
+          "order": 3
+        }
+      ]
+    },
+    "prf": {
+      "scenario": "Přečti si výzkumný scénář a roztřiď věty do správných sekcí abstraktu. Některé věty nepatří nikam.",
+      "researchContext": {
+        "title": "Aplikace AI v soudní judikatuře",
+        "field": "Právo a technologie",
+        "topic": "Umělá inteligence v právním systému"
+      },
+      "abstractSections": [
+        {
+          "id": "background",
+          "label": "Kontext a cíl",
+          "description": "Úvod, právní problém, kontext",
+          "minSentences": 2,
+          "maxSentences": 3
+        },
+        {
+          "id": "methods",
+          "label": "Metodologie",
+          "description": "Postup, analýza, vzorek",
+          "minSentences": 2,
+          "maxSentences": 3
+        },
+        {
+          "id": "results",
+          "label": "Výsledky",
+          "description": "Zjištění, závěry analýzy",
+          "minSentences": 2,
+          "maxSentences": 3
+        },
+        {
+          "id": "conclusions",
+          "label": "Závěry",
+          "description": "Právní implikace, doporučení",
+          "minSentences": 1,
+          "maxSentences": 2
+        }
+      ],
+      "sentences": [
+        {
+          "id": "s1",
+          "text": "Umělá inteligence se stále častěji objevuje v soudních systémech jako nástroj pro podporu rozhodování soudců.",
+          "correctSection": "background",
+          "order": 1
+        },
+        {
+          "id": "s2",
+          "text": "Tato studie analyzuje právní a etické aspekty používání AI v rozhodovací praxi českých soudů.",
+          "correctSection": "background",
+          "order": 2
+        },
+        {
+          "id": "s3",
+          "text": "Analyzovali jsme 245 rozhodnutí Nejvyššího soudu ČR z let 2018-2023, kde byla zmíněna AI nebo automatizované systémy.",
+          "correctSection": "methods",
+          "order": 1
+        },
+        {
+          "id": "s4",
+          "text": "Použili jsme komparativní právní metodu a obsahovou analýzu soudních rozhodnutí.",
+          "correctSection": "methods",
+          "order": 2
+        },
+        {
+          "id": "s5",
+          "text": "Zjistili jsme, že v 73% případů soudy akceptovaly AI-generované důkazy bez hlubší kritické reflexe.",
+          "correctSection": "results",
+          "order": 1
+        },
+        {
+          "id": "s6",
+          "text": "Pouze 12% rozhodnutí explicitně diskutovalo možná rizika bias a chybovosti AI systémů.",
+          "correctSection": "results",
+          "order": 2
+        },
+        {
+          "id": "s7",
+          "text": "Doporučujeme legislativní úpravu, která by jasně definovala podmínky použití AI v soudní praxi.",
+          "correctSection": "conclusions",
+          "order": 1
+        },
+        {
+          "id": "s8",
+          "text": "Je nezbytné zajistit transparentnost algoritmů a právo na lidské přezkoumání automatizovaných rozhodnutí.",
+          "correctSection": "conclusions",
+          "order": 2
+        },
+        {
+          "id": "s9",
+          "text": "Autoři článku působí na Právnické fakultě Masarykovy univerzity.",
+          "correctSection": "none",
+          "order": 0,
+          "isRedHerring": true
+        },
+        {
+          "id": "s10",
+          "text": "Děkujeme recenzentům za cenné připomínky k rukopisu.",
+          "correctSection": "none",
+          "order": 0,
+          "isRedHerring": true
+        },
+        {
+          "id": "s11",
+          "text": "Srovnali jsme českou praxi s judikaturu Evropského soudu pro lidská práva.",
+          "correctSection": "methods",
+          "order": 3
+        },
+        {
+          "id": "s12",
+          "text": "Identifikovali jsme potenciální kolizi s právem na spravedlivý proces podle čl. 6 Úmluvy.",
+          "correctSection": "results",
+          "order": 3
+        }
+      ]
+    }
+  }
+}
