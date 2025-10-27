@@ -1,0 +1,176 @@
+{
+  "facultyVariants": {
+    "ff": {
+      "scenario": "Vyber správný typ grafu pro každou datovou sadu. Některé datasety mohou mít více správných odpovědí.",
+      "researchContext": {
+        "title": "Vizualizace výsledků výzkumu sociálních médií",
+        "field": "Politologie"
+      },
+      "datasets": [
+        {
+          "id": "ds1",
+          "title": "Vývoj počtu uživatelů sociálních médií",
+          "description": "Data ukazují růst počtu uživatelů Facebooku, Twitteru a Instagramu v letech 2015-2023 (v milionech uživatelů).",
+          "dataType": "time_series",
+          "correctCharts": ["line", "bar"],
+          "primaryChart": "line"
+        },
+        {
+          "id": "ds2",
+          "title": "Rozdělení politických preferencí",
+          "description": "Procentuální rozdělení respondentů podle politické orientace: Levice 28%, Střed 45%, Pravice 27%.",
+          "dataType": "proportional",
+          "correctCharts": ["pie", "bar"],
+          "primaryChart": "pie"
+        },
+        {
+          "id": "ds3",
+          "title": "Vztah mezi časem stráveným online a polarizací",
+          "description": "Data ukazují korelaci mezi hodinami strávenými na sociálních médiích (1-10h) a mírou politické polarizace (škála 1-100).",
+          "dataType": "correlation",
+          "correctCharts": ["scatter"],
+          "primaryChart": "scatter"
+        },
+        {
+          "id": "ds4",
+          "title": "Srovnání věkových skupin",
+          "description": "Porovnání 4 věkových skupin (18-25, 26-40, 41-60, 60+) podle průměrného počtu sledovaných stran na Facebooku.",
+          "dataType": "categorical_comparison",
+          "correctCharts": ["bar"],
+          "primaryChart": "bar"
+        },
+        {
+          "id": "ds5",
+          "title": "Rozložení míry angažovanosti",
+          "description": "Distribuce míry angažovanosti (lajky, komentáře, sdílení) napříč 500 uživateli - zobrazení mediánu, kvartilů a odlehlých hodnot.",
+          "dataType": "distribution",
+          "correctCharts": ["box"],
+          "primaryChart": "box"
+        }
+      ],
+      "chartTypes": [
+        {
+          "id": "line",
+          "name": "Liniový graf",
+          "icon": "📈",
+          "description": "Vhodný pro vývoj v čase",
+          "useCases": ["time_series", "trends"]
+        },
+        {
+          "id": "bar",
+          "name": "Sloupcový graf",
+          "icon": "📊",
+          "description": "Porovnání kategorií",
+          "useCases": ["categorical_comparison", "proportional", "time_series"]
+        },
+        {
+          "id": "pie",
+          "name": "Koláčový graf",
+          "icon": "🥧",
+          "description": "Procentuální rozdělení",
+          "useCases": ["proportional"]
+        },
+        {
+          "id": "scatter",
+          "name": "Bodový graf (Scatter)",
+          "icon": "📉",
+          "description": "Vztah mezi dvěma proměnnými",
+          "useCases": ["correlation"]
+        },
+        {
+          "id": "box",
+          "name": "Krabicový graf (Box Plot)",
+          "icon": "📦",
+          "description": "Statistické rozložení dat",
+          "useCases": ["distribution"]
+        }
+      ]
+    },
+    "prf": {
+      "scenario": "Vyber správný typ grafu pro každou datovou sadu. Některé datasety mohou mít více správných odpovědí.",
+      "researchContext": {
+        "title": "Vizualizace právních statistik a AI analýzy",
+        "field": "Právo a technologie"
+      },
+      "datasets": [
+        {
+          "id": "ds1",
+          "title": "Vývoj počtu rozhodnutí zmíňujících AI",
+          "description": "Počet soudních rozhodnutí českých soudů zmíňujících umělou inteligenci v letech 2015-2023.",
+          "dataType": "time_series",
+          "correctCharts": ["line", "bar"],
+          "primaryChart": "line"
+        },
+        {
+          "id": "ds2",
+          "title": "Rozdělení typů AI aplikací v soudnictví",
+          "description": "Procentuální zastoupení: Prediktivní analýza 35%, Důkazní analýza 40%, Právní výzkum 25%.",
+          "dataType": "proportional",
+          "correctCharts": ["pie", "bar"],
+          "primaryChart": "pie"
+        },
+        {
+          "id": "ds3",
+          "title": "Korelace mezi zkušeností soudce a přijetím AI",
+          "description": "Vztah mezi lety praxe soudce (0-40 let) a ochotou používat AI nástroje (škála 1-10).",
+          "dataType": "correlation",
+          "correctCharts": ["scatter"],
+          "primaryChart": "scatter"
+        },
+        {
+          "id": "ds4",
+          "title": "Srovnání soudních instancí",
+          "description": "Porovnání okresních, krajských a vrchních soudů podle počtu AI-asistovaných rozhodnutí za rok 2023.",
+          "dataType": "categorical_comparison",
+          "correctCharts": ["bar"],
+          "primaryChart": "bar"
+        },
+        {
+          "id": "ds5",
+          "title": "Distribuce délky řízení",
+          "description": "Statistické rozložení délky soudních řízení (ve dnech) v 250 případech - medián, kvartily, extrémy.",
+          "dataType": "distribution",
+          "correctCharts": ["box"],
+          "primaryChart": "box"
+        }
+      ],
+      "chartTypes": [
+        {
+          "id": "line",
+          "name": "Liniový graf",
+          "icon": "📈",
+          "description": "Vhodný pro vývoj v čase",
+          "useCases": ["time_series", "trends"]
+        },
+        {
+          "id": "bar",
+          "name": "Sloupcový graf",
+          "icon": "📊",
+          "description": "Porovnání kategorií",
+          "useCases": ["categorical_comparison", "proportional", "time_series"]
+        },
+        {
+          "id": "pie",
+          "name": "Koláčový graf",
+          "icon": "🥧",
+          "description": "Procentuální rozdělení",
+          "useCases": ["proportional"]
+        },
+        {
+          "id": "scatter",
+          "name": "Bodový graf (Scatter)",
+          "icon": "📉",
+          "description": "Vztah mezi dvěma proměnnými",
+          "useCases": ["correlation"]
+        },
+        {
+          "id": "box",
+          "name": "Krabicový graf (Box Plot)",
+          "icon": "📦",
+          "description": "Statistické rozložení dat",
+          "useCases": ["distribution"]
+        }
+      ]
+    }
+  }
+}
