@@ -1,0 +1,248 @@
+{
+  "facultyVariants": {
+    "ff": {
+      "scenario": "Přečti si následující abstrakt a identifikuj problémy. Klikni na problematické části textu a označ typ problému. Poté vyber také 3 silné stránky článku.",
+      "researchContext": {
+        "title": "Peer Review: Hodnocení vědeckého abstraktu",
+        "field": "Politologie"
+      },
+      "articleText": "Sociální média úplně zničila kvalitu politické debaty v moderní společnosti. Každý ví, že Facebook způsobuje polarizaci. Naše průlomová studie analyzovala příspěvky na sociálních sítích. Použili jsme dotazníkové šetření s 50 respondenty. Výsledky ukázaly, že 95% uživatelů je ovlivněno fake news, což znamená, že sociální média jsou nebezpečná a měla by být regulována vládou. Studie jasně prokazuje nutnost okamžité legislativní intervence.",
+      "articleParagraphs": [
+        {
+          "id": "p1",
+          "text": "Sociální média úplně zničila kvalitu politické debaty v moderní společnosti.",
+          "hasIssue": true,
+          "issueType": "bias",
+          "explanation": "Příliš emociální a zkreslený jazyk bez objektivity"
+        },
+        {
+          "id": "p2",
+          "text": "Každý ví, že Facebook způsobuje polarizaci.",
+          "hasIssue": true,
+          "issueType": "no_citation",
+          "explanation": "Tvrzení bez citace zdroje nebo důkazu"
+        },
+        {
+          "id": "p3",
+          "text": "Naše průlomová studie analyzovala příspěvky na sociálních sítích.",
+          "hasIssue": false
+        },
+        {
+          "id": "p4",
+          "text": "Použili jsme dotazníkové šetření s 50 respondenty.",
+          "hasIssue": true,
+          "issueType": "unclear_method",
+          "explanation": "Nedostatečný popis metodologie - chybí výběr vzorku, způsob sběru dat"
+        },
+        {
+          "id": "p5",
+          "text": "Výsledky ukázaly, že 95% uživatelů je ovlivněno fake news, což znamená, že sociální média jsou nebezpečná a měla by být regulována vládou.",
+          "hasIssue": true,
+          "issueType": "overgeneralization",
+          "explanation": "Přehnané závěry z malého vzorku a skok k politickým doporučením"
+        },
+        {
+          "id": "p6",
+          "text": "Studie jasně prokazuje nutnost okamžité legislativní intervence.",
+          "hasIssue": true,
+          "issueType": "bias",
+          "explanation": "Prescriptivní tvrzení bez dostatečného vědeckého zdůvodnění"
+        }
+      ],
+      "issueTypes": [
+        {
+          "id": "no_citation",
+          "label": "Chybějící citace",
+          "icon": "📚",
+          "description": "Tvrzení bez zdroje"
+        },
+        {
+          "id": "bias",
+          "label": "Neobjektivní jazyk",
+          "icon": "⚖️",
+          "description": "Emociální nebo zkreslený jazyk"
+        },
+        {
+          "id": "unclear_method",
+          "label": "Nejasná metodologie",
+          "icon": "🔬",
+          "description": "Nedostatečný popis metod"
+        },
+        {
+          "id": "overgeneralization",
+          "label": "Přehnaný závěr",
+          "icon": "⚠️",
+          "description": "Závěry jdou za rámec dat"
+        },
+        {
+          "id": "grammar",
+          "label": "Gramatická chyba",
+          "icon": "✍️",
+          "description": "Pravopisná nebo stylistická chyba"
+        },
+        {
+          "id": "structure",
+          "label": "Špatná struktura",
+          "icon": "📋",
+          "description": "Logická struktura není jasná"
+        }
+      ],
+      "strengths": [
+        {
+          "id": "str1",
+          "text": "Jasně definovaná výzkumná otázka",
+          "isCorrect": false
+        },
+        {
+          "id": "str2",
+          "text": "Adekvátní velikost vzorku",
+          "isCorrect": false
+        },
+        {
+          "id": "str3",
+          "text": "Aktuální a relevantní téma",
+          "isCorrect": true
+        },
+        {
+          "id": "str4",
+          "text": "Objektivní prezentace výsledků",
+          "isCorrect": false
+        },
+        {
+          "id": "str5",
+          "text": "Dobře strukturovaný text",
+          "isCorrect": false
+        },
+        {
+          "id": "str6",
+          "text": "Použití kvantitativní metody",
+          "isCorrect": true
+        }
+      ],
+      "requiredIssues": 4,
+      "requiredStrengths": 2
+    },
+    "prf": {
+      "scenario": "Přečti si následující abstrakt a identifikuj problémy. Klikni na problematické části textu a označ typ problému. Poté vyber také 3 silné stránky článku.",
+      "researchContext": {
+        "title": "Peer Review: Hodnocení právnického článku",
+        "field": "Právo a technologie"
+      },
+      "articleText": "AI v soudnictví je zásadní problém současnosti. Je všeobecně známo, že algoritmy diskriminují menšiny. Provedli jsme analýzu několika soudních rozhodnutí. Zjistili jsme, že soudy často používají AI bez kontroly. Z našich 30 případů vyplývá, že všechny soudy v ČR musí okamžitě zakázat AI. Právní úprava je naprosto nezbytná.",
+      "articleParagraphs": [
+        {
+          "id": "p1",
+          "text": "AI v soudnictví je zásadní problém současnosti.",
+          "hasIssue": false
+        },
+        {
+          "id": "p2",
+          "text": "Je všeobecně známo, že algoritmy diskriminují menšiny.",
+          "hasIssue": true,
+          "issueType": "no_citation",
+          "explanation": "Tvrzení bez citace empirických studií nebo judikatury"
+        },
+        {
+          "id": "p3",
+          "text": "Provedli jsme analýzu několika soudních rozhodnutí.",
+          "hasIssue": true,
+          "issueType": "unclear_method",
+          "explanation": "Neurčitý počet, chybí specifikace soudů, období, kritérií výběru"
+        },
+        {
+          "id": "p4",
+          "text": "Zjistili jsme, že soudy často používají AI bez kontroly.",
+          "hasIssue": true,
+          "issueType": "overgeneralization",
+          "explanation": "Vágní tvrzení bez konkrétních dat nebo statistik"
+        },
+        {
+          "id": "p5",
+          "text": "Z našich 30 případů vyplývá, že všechny soudy v ČR musí okamžitě zakázat AI.",
+          "hasIssue": true,
+          "issueType": "overgeneralization",
+          "explanation": "Extrémní generalizace z malého vzorku na všechny soudy"
+        },
+        {
+          "id": "p6",
+          "text": "Právní úprava je naprosto nezbytná.",
+          "hasIssue": true,
+          "issueType": "bias",
+          "explanation": "Silné normat ivní tvrzení bez dostatečné vědecké argumentace"
+        }
+      ],
+      "issueTypes": [
+        {
+          "id": "no_citation",
+          "label": "Chybějící citace",
+          "icon": "📚",
+          "description": "Tvrzení bez právního zdroje"
+        },
+        {
+          "id": "bias",
+          "label": "Neobjektivní jazyk",
+          "icon": "⚖️",
+          "description": "Příliš normativní nebo emociální"
+        },
+        {
+          "id": "unclear_method",
+          "label": "Nejasná metodologie",
+          "icon": "🔬",
+          "description": "Nedostatečný popis analýzy"
+        },
+        {
+          "id": "overgeneralization",
+          "label": "Přehnaný závěr",
+          "icon": "⚠️",
+          "description": "Neodůvodněná generalizace"
+        },
+        {
+          "id": "grammar",
+          "label": "Gramatická chyba",
+          "icon": "✍️",
+          "description": "Jazyková chyba"
+        },
+        {
+          "id": "structure",
+          "label": "Špatná struktura",
+          "icon": "📋",
+          "description": "Logická struktura není jasná"
+        }
+      ],
+      "strengths": [
+        {
+          "id": "str1",
+          "text": "Jasně definovaný právní problém",
+          "isCorrect": false
+        },
+        {
+          "id": "str2",
+          "text": "Dostatečný vzorek případů",
+          "isCorrect": false
+        },
+        {
+          "id": "str3",
+          "text": "Aktuální a prakticky relevantní téma",
+          "isCorrect": true
+        },
+        {
+          "id": "str4",
+          "text": "Vyvážená právní argumentace",
+          "isCorrect": false
+        },
+        {
+          "id": "str5",
+          "text": "Použití empirické právní metody",
+          "isCorrect": true
+        },
+        {
+          "id": "str6",
+          "text": "Přesná citace judikatury",
+          "isCorrect": false
+        }
+      ],
+      "requiredIssues": 4,
+      "requiredStrengths": 2
+    }
+  }
+}
