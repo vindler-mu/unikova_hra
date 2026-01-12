@@ -27,6 +27,7 @@ import {
 
 import { getEpilogueData, formatTime, getDamageLevel } from "./utils/gameLogic";
 import { useGameTimer } from "./hooks/useGameTimer";
+import ComponentViewer from "./components/ComponentViewer";
 import PersonalizationScreen from "./components/PersonalizationScreen";
 import DesktopScreen from "./components/DesktopScreen";
 import EmailScreen from "./components/EmailScreen";
@@ -42,6 +43,20 @@ import CompletionScreen from "./components/CompletionScreen";
 import TimeoutScreen from "./components/TimeoutScreen";
 
 const EscapeRoomGame = () => {
+  // Check if viewer mode is enabled via URL parameter
+  const [viewerMode, setViewerMode] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('viewer') === 'true') {
+      setViewerMode(true);
+    }
+  }, []);
+
+  // Render ComponentViewer if in viewer mode
+  if (viewerMode) {
+    return <ComponentViewer />;
+  }
   // Tasks array placeholder
   const tasks = [
     { title: "Task 1", description: "Task 1 description", subtasks: [] },
