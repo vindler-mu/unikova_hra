@@ -25,18 +25,9 @@ import {
   PENALTY_OTHER_TASKS,
 } from "./data/gameData";
 
-// Import individual game data
-import { game1Data } from "./data/task/Task1Data";
-import { game2Data } from "./data/task/Task2Data";
-import { game3Data } from "./data/task/Task3Data";
-import { game4Data } from "./data/task/Task4Data";
-
 import { getEpilogueData, formatTime, getDamageLevel } from "./utils/gameLogic";
 import { useGameTimer } from "./hooks/useGameTimer";
-import Section1Container from "./components/Section1/Section1Container";
-import Section2Container from "./components/Section2/Section2Container";
-import Section3Container from "./components/Section3/Section3Container";
-import Section4Container from "./components/Section4/Section4Container";
+import ComponentViewer from "./components/ComponentViewer";
 import PersonalizationScreen from "./components/PersonalizationScreen";
 import DesktopScreen from "./components/DesktopScreen";
 import EmailScreen from "./components/EmailScreen";
@@ -52,15 +43,27 @@ import CompletionScreen from "./components/CompletionScreen";
 import TimeoutScreen from "./components/TimeoutScreen";
 
 const EscapeRoomGame = () => {
-  // Create game data array for easy access
-  const gameDataArray = [game1Data, game2Data, game3Data, game4Data];
+  // Check if viewer mode is enabled via URL parameter
+  const [viewerMode, setViewerMode] = useState(false);
 
-  // Reconstruct tasks array for components that still need it (like OverviewScreen)
-  const tasks = gameDataArray.map((gameData) => ({
-    title: gameData.title,
-    description: gameData.description,
-    subtasks: gameData.subtasks,
-  }));
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('viewer') === 'true') {
+      setViewerMode(true);
+    }
+  }, []);
+
+  // Render ComponentViewer if in viewer mode
+  if (viewerMode) {
+    return <ComponentViewer />;
+  }
+  // Tasks array placeholder
+  const tasks = [
+    { title: "Task 1", description: "Task 1 description", subtasks: [] },
+    { title: "Task 2", description: "Task 2 description", subtasks: [] },
+    { title: "Task 3", description: "Task 3 description", subtasks: [] },
+    { title: "Task 4", description: "Task 4 description", subtasks: [] }
+  ];
 
   // Screen navigation state
   const [gameStarted, setGameStarted] = useState(false);
@@ -181,47 +184,12 @@ const EscapeRoomGame = () => {
     return getDamageLevel(databaseIntegrity);
   }, [databaseIntegrity]);
 
-  // Handle answer submission
+  // Handle answer submission - removed (no game mechanics)
   const handleAnswer = useCallback(
     (taskIndex, subtaskIndex, isCorrect) => {
-      const currentTaskData = gameDataArray[taskIndex];
-
-      if (!isCorrect) {
-        playSound("error");
-        setWrongAnswersCount((prev) => prev + 1);
-        const penalty = taskIndex === 0 ? PENALTY_TASK1 : PENALTY_OTHER_TASKS;
-        setDatabaseIntegrity((prev) => Math.max(0, prev - penalty));
-        if (databaseIntegrity - penalty <= 25) {
-          playSound("aigor-attack");
-        }
-        return;
-      }
-
-      playSound("success");
-      const newTaskStates = { ...taskStates };
-      const taskKey = `task${taskIndex + 1}`;
-
-      if (subtaskIndex === currentTaskData.subtasks.length - 1) {
-        // Task completed
-        newTaskStates[taskKey].completed = true;
-        setCollectedDigits((prev) => [...prev, COLLECTED_DIGITS[taskIndex]]);
-        setCompletedTasks((prev) => prev + 1);
-        setTaskStates(newTaskStates);
-        setUnlockedStorySegments((prev) => [...prev, taskIndex]);
-
-        // Show debriefing
-        setTimeout(() => {
-          setShowDebriefing(taskIndex);
-        }, 100);
-      } else {
-        // Move to next subtask
-        if (subtaskIndex < currentTaskData.subtasks.length - 1) {
-          newTaskStates[taskKey].currentSubtask = subtaskIndex + 1;
-          setTaskStates(newTaskStates);
-        }
-      }
+      console.log("handleAnswer called but game mechanics are removed");
     },
-    [taskStates, databaseIntegrity, gameDataArray]
+    []
   );
 
   // Handle password submission from LibrarianInterlude
@@ -390,52 +358,16 @@ const EscapeRoomGame = () => {
     );
   }
 
-  // Briefing Screen - OPRAVENO: přidány všechny potřebné props
+  // Briefing Screen - removed (no game data)
   if (showBriefing !== null) {
-    return (
-      <BriefingScreen
-        taskIndex={showBriefing}
-        gameData={gameDataArray[showBriefing]}
-        playerName={playerName}
-        selectedFaculty={selectedFaculty}
-        timeLeft={timeLeft}
-        databaseIntegrity={databaseIntegrity}
-        collectedDigits={collectedDigits}
-        wrongAnswersCount={wrongAnswersCount}
-        formatTime={formatTime}
-        getDamageLevel={getDamageLevelText}
-        COLLECTED_DIGITS={COLLECTED_DIGITS}
-        GAME_TIME={GAME_TIME}
-        onStart={() => {
-          setShowBriefing(null);
-          setCurrentTask(showBriefing);
-        }}
-      />
-    );
+    setShowBriefing(null);
+    setShowOverview(true);
   }
 
-  // Debriefing Screen
+  // Debriefing Screen - removed (no game data)
   if (showDebriefing !== null) {
-    return (
-      <DebriefingScreen
-        taskIndex={showDebriefing}
-        gameData={gameDataArray[showDebriefing]}
-        playerName={playerName}
-        selectedFaculty={selectedFaculty}
-        collectedDigits={collectedDigits}
-        onContinue={() => {
-          setShowDebriefing(null);
-          // Check if all tasks completed
-          if (collectedDigits.length === 4) {
-            setShowFinalCodePrompt(true);
-          } else {
-            // Show librarian interlude for next task
-            setShowLibrarianInterlude(showDebriefing);
-          }
-        }}
-        COLLECTED_DIGITS={COLLECTED_DIGITS}
-      />
-    );
+    setShowDebriefing(null);
+    setShowOverview(true);
   }
 
   // Librarian Interlude Screen
@@ -504,165 +436,32 @@ const EscapeRoomGame = () => {
     );
   }
 
-  // Main game interface - Section1 for task 0, TaskScreen for others
-
-  // Task 1: Use new Section1 (interactive keyword selection)
-  if (currentTask === 0) {
-    return (
-      <Section1Container
-        facultyId={selectedFaculty?.id || "ff"}
-        facultyColor={selectedFaculty?.color}
-        onSectionComplete={(result) => {
-          console.log("Section 1 completed with score:", result.totalScore);
-
-          // Mark task as completed
-          setTaskStates((prev) => ({
-            ...prev,
-            task1: { ...prev.task1, completed: true },
-          }));
-
-          // Add collected digit
-          setCollectedDigits((prev) => [...prev, COLLECTED_DIGITS[0]]);
-
-          // Increase completed tasks
-          setCompletedTasks((prev) => prev + 1);
-
-          // Add to unlocked story segments
-          setUnlockedStorySegments((prev) => [...prev, 0]);
-
-          // Show debriefing
-          setTimeout(() => {
-            setShowDebriefing(0);
-          }, 100);
-        }}
-      />
-    );
-  }
-
-  // Task 2: Use Section2 (information evaluation)
-  if (currentTask === 1) {
-    return (
-      <Section2Container
-        facultyId={selectedFaculty?.id || "ff"}
-        facultyColor={selectedFaculty?.color}
-        onSectionComplete={(result) => {
-          console.log("Section 2 completed with score:", result.totalScore);
-
-          // Mark task as completed
-          setTaskStates((prev) => ({
-            ...prev,
-            task2: { ...prev.task2, completed: true },
-          }));
-
-          // Add collected digit
-          setCollectedDigits((prev) => [...prev, COLLECTED_DIGITS[1]]);
-
-          // Increase completed tasks
-          setCompletedTasks((prev) => prev + 1);
-
-          // Add to unlocked story segments
-          setUnlockedStorySegments((prev) => [...prev, 1]);
-
-          // Show debriefing
-          setTimeout(() => {
-            setShowDebriefing(1);
-          }, 100);
-        }}
-      />
-    );
-  }
-
-  // Task 3: Use Section3 (research skills - concept mapping & literature structuring)
-  if (currentTask === 2) {
-    return (
-      <Section3Container
-        facultyId={selectedFaculty?.id || "ff"}
-        facultyColor={selectedFaculty?.color}
-        onSectionComplete={(result) => {
-          console.log("Section 3 completed with score:", result.totalScore);
-
-          // Mark task as completed
-          setTaskStates((prev) => ({
-            ...prev,
-            task3: { ...prev.task3, completed: true },
-          }));
-
-          // Add collected digit
-          setCollectedDigits((prev) => [...prev, COLLECTED_DIGITS[2]]);
-
-          // Increase completed tasks
-          setCompletedTasks((prev) => prev + 1);
-
-          // Add to unlocked story segments
-          setUnlockedStorySegments((prev) => [...prev, 2]);
-
-          // Show debriefing
-          setTimeout(() => {
-            setShowDebriefing(2);
-          }, 100);
-        }}
-      />
-    );
-  }
-
-  // Task 4: Use Section4 (communication of results)
-  if (currentTask === 3) {
-    return (
-      <Section4Container
-        facultyId={selectedFaculty?.id || "ff"}
-        facultyColor={selectedFaculty?.color}
-        onSectionComplete={(result) => {
-          console.log("Section 4 completed with score:", result.totalScore);
-
-          // Mark task as completed
-          setTaskStates((prev) => ({
-            ...prev,
-            task4: { ...prev.task4, completed: true },
-          }));
-
-          // Add collected digit
-          setCollectedDigits((prev) => [...prev, COLLECTED_DIGITS[3]]);
-
-          // Increase completed tasks
-          setCompletedTasks((prev) => prev + 1);
-
-          // Add to unlocked story segments
-          setUnlockedStorySegments((prev) => [...prev, 3]);
-
-          // Show debriefing
-          setTimeout(() => {
-            setShowDebriefing(3);
-          }, 100);
-        }}
-      />
-    );
-  }
-
-  // Fallback: Use traditional TaskScreen (should not be reached)
-  const currentTaskData = gameDataArray[currentTask];
-
+  // Main game interface - game mechanics removed
+  // Placeholder: show overview or message that tasks are not yet implemented
   return (
-    <TaskScreen
-      currentTask={currentTask}
-      taskData={currentTaskData}
-      tasks={tasks}
-      taskStates={taskStates}
-      timeLeft={timeLeft}
-      databaseIntegrity={databaseIntegrity}
-      wrongAnswersCount={wrongAnswersCount}
-      collectedDigits={collectedDigits}
-      playerName={playerName}
-      selectedFaculty={selectedFaculty}
-      showHint={showHint}
-      setShowHint={setShowHint}
-      formatTime={formatTime}
-      getDamageLevel={getDamageLevelText}
-      handleAnswer={handleAnswer}
-      handleTaskSelect={handleTaskSelect}
-      onShowFinalCode={() => setShowFinalCodePrompt(true)}
-      onTaskComplete={handleTaskComplete}
-      COLLECTED_DIGITS={COLLECTED_DIGITS}
-    />
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+      color: '#00ff00',
+      fontFamily: 'Courier New, monospace',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px'
+    }}>
+      <div style={{
+        textAlign: 'center',
+        maxWidth: '600px'
+      }}>
+        <h1 style={{ fontSize: '2em', marginBottom: '20px' }}>
+          Herní mechanismy byly odstraněny
+        </h1>
+        <p style={{ fontSize: '1.2em', lineHeight: '1.6' }}>
+          Sekce 1-4 a jejich data byly kompletně odstraněny z projektu.
+          Základní flow (personalizace, desktop, emaily, terminal) zůstává funkční.
+        </p>
+      </div>
+    </div>
   );
 };
 
