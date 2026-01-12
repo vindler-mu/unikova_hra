@@ -50,7 +50,7 @@ const PersonalizationScreen = ({
             }}
           >
             <img
-              src="/media/muni.svg"
+              src={process.env.PUBLIC_URL + "/media/muni.svg"}
               alt="Logo Masarykovy univerzity"
               style={{
                 width: "250px",
