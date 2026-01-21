@@ -42,6 +42,14 @@ import FinalCodePrompt from "./components/FinalCodePrompt";
 import CompletionScreen from "./components/CompletionScreen";
 import TimeoutScreen from "./components/TimeoutScreen";
 
+// Import Section containers (placeholders for now)
+import SectionPlaceholder from "./components/SectionPlaceholder";
+import Section4Placeholder from "./components/Section4/Section4Placeholder";
+
+// Import briefing and placeholder data
+import { getBriefingData } from "./data/briefingData";
+import { getSectionPlaceholderData } from "./data/sectionPlaceholderData";
+
 const EscapeRoomGame = () => {
   // Check if viewer mode is enabled via URL parameter
   const [viewerMode, setViewerMode] = useState(false);
@@ -358,16 +366,89 @@ const EscapeRoomGame = () => {
     );
   }
 
-  // Briefing Screen - removed (no game data)
+  // Briefing Screen
   if (showBriefing !== null) {
-    setShowBriefing(null);
-    setShowOverview(true);
+    const briefingData = {
+      briefing: getBriefingData(showBriefing),
+    };
+
+    return (
+      <BriefingScreen
+        taskIndex={showBriefing}
+        gameData={briefingData}
+        playerName={playerName}
+        selectedFaculty={selectedFaculty}
+        onStart={() => {
+          setShowBriefing(null);
+          setCurrentTask(showBriefing); // Spustí section
+          setGameStarted(true);
+        }}
+        timeLeft={timeLeft}
+        databaseIntegrity={databaseIntegrity}
+        collectedDigits={collectedDigits}
+        wrongAnswersCount={wrongAnswersCount}
+        formatTime={formatTime}
+        getDamageLevel={getDamageLevelText}
+        COLLECTED_DIGITS={COLLECTED_DIGITS}
+        GAME_TIME={GAME_TIME}
+      />
+    );
   }
 
-  // Debriefing Screen - removed (no game data)
+  // Debriefing Screen
   if (showDebriefing !== null) {
-    setShowDebriefing(null);
-    setShowOverview(true);
+    // TODO: Get actual score from completed section
+    const mockScore = 350; // Placeholder score
+    const maxScore = 400;
+
+    return (
+      <DebriefingScreen
+        taskIndex={showDebriefing}
+        taskScore={mockScore}
+        maxScore={maxScore}
+        digit={COLLECTED_DIGITS[showDebriefing]}
+        playerName={playerName}
+        selectedFaculty={selectedFaculty}
+        onContinue={() => {
+          // Přidat číslici
+          setCollectedDigits((prev) => {
+            if (!prev.includes(COLLECTED_DIGITS[showDebriefing])) {
+              return [...prev, COLLECTED_DIGITS[showDebriefing]];
+            }
+            return prev;
+          });
+
+          // Označit task jako dokončený
+          const taskKey = `task${showDebriefing + 1}`;
+          setTaskStates((prev) => ({
+            ...prev,
+            [taskKey]: { ...prev[taskKey], completed: true },
+          }));
+
+          setCompletedTasks((prev) => prev + 1);
+
+          // Pokud je to Task 4, jdi na final code
+          if (showDebriefing === 3) {
+            setShowDebriefing(null);
+            setCurrentTask(null);
+            setShowFinalCodePrompt(true);
+          } else {
+            // Jinak jdi na Librarian Interlude
+            setShowDebriefing(null);
+            setCurrentTask(null);
+            setShowLibrarianInterlude(showDebriefing);
+          }
+        }}
+        timeLeft={timeLeft}
+        databaseIntegrity={databaseIntegrity}
+        collectedDigits={collectedDigits}
+        wrongAnswersCount={wrongAnswersCount}
+        formatTime={formatTime}
+        getDamageLevel={getDamageLevelText}
+        COLLECTED_DIGITS={COLLECTED_DIGITS}
+        GAME_TIME={GAME_TIME}
+      />
+    );
   }
 
   // Librarian Interlude Screen
@@ -436,30 +517,79 @@ const EscapeRoomGame = () => {
     );
   }
 
-  // Main game interface - game mechanics removed
-  // Placeholder: show overview or message that tasks are not yet implemented
+  // Section Container Routing
+  if (currentTask !== null && !showDebriefing) {
+    const handleSectionComplete = (taskIndex, results) => {
+      // TODO: Store results for debriefing
+      setCurrentTask(null);
+      setShowDebriefing(taskIndex);
+    };
+
+    // Render appropriate section (placeholders for Sections 1-3)
+    if (currentTask >= 0 && currentTask <= 2) {
+      const sectionData = getSectionPlaceholderData(currentTask);
+      return (
+        <SectionPlaceholder
+          {...sectionData}
+          playerName={playerName}
+          selectedFaculty={selectedFaculty}
+          onComplete={handleSectionComplete}
+        />
+      );
+    }
+
+    if (currentTask === 3) {
+      return (
+        <Section4Placeholder
+          playerName={playerName}
+          selectedFaculty={selectedFaculty}
+          onComplete={handleSectionComplete}
+        />
+      );
+    }
+  }
+
+  // Fallback: show message if no screen matches
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-      color: '#00ff00',
-      fontFamily: 'Courier New, monospace',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '20px'
-    }}>
-      <div style={{
-        textAlign: 'center',
-        maxWidth: '600px'
-      }}>
-        <h1 style={{ fontSize: '2em', marginBottom: '20px' }}>
-          Herní mechanismy byly odstraněny
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)",
+        color: "#00ff00",
+        fontFamily: "Courier New, monospace",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "20px",
+      }}
+    >
+      <div
+        style={{
+          textAlign: "center",
+          maxWidth: "600px",
+        }}
+      >
+        <h1 style={{ fontSize: "2em", marginBottom: "20px" }}>
+          Neznámý stav hry
         </h1>
-        <p style={{ fontSize: '1.2em', lineHeight: '1.6' }}>
-          Sekce 1-4 a jejich data byly kompletně odstraněny z projektu.
-          Základní flow (personalizace, desktop, emaily, terminal) zůstává funkční.
+        <p style={{ fontSize: "1.2em", lineHeight: "1.6" }}>
+          Něco se pokazilo. Zkuste obnovit stránku nebo se vrátit na začátek.
         </p>
+        <button
+          onClick={() => window.location.reload()}
+          style={{
+            marginTop: "20px",
+            padding: "10px 20px",
+            fontSize: "1em",
+            background: "#0000dc",
+            color: "#fff",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          Obnovit stránku
+        </button>
       </div>
     </div>
   );
