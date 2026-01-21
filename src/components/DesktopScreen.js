@@ -114,13 +114,13 @@ const DesktopScreen = ({
       >
         {iconData.id === "email" ? (
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/d/df/Microsoft_Office_Outlook_%282018–present%29.svg"
+            src="/media/outlook.webp"
             alt="MUNI Mail"
             style={{ width: "32px", height: "32px" }}
           />
         ) : iconData.id === "onedrive" ? (
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Microsoft_Office_OneDrive_%282019%E2%80%93present%29.svg"
+            src="/media/onedrive.jpg"
             alt="OneDrive"
             style={{ width: "32px", height: "32px" }}
           />
@@ -132,13 +132,13 @@ const DesktopScreen = ({
           />
         ) : iconData.id === "word" ? (
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Microsoft_Office_Word_%282019–present%29.svg"
+            src="/media/word.png"
             alt="Microsoft Word"
             style={{ width: "32px", height: "32px" }}
           />
         ) : iconData.id === "excel" ? (
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019–present%29.svg"
+            src="/media/excel.png"
             alt="Microsoft Excel"
             style={{ width: "32px", height: "32px" }}
           />
@@ -392,13 +392,13 @@ const DesktopScreen = ({
               >
                 {app.icon === "word" ? (
                   <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Microsoft_Office_Word_%282019–present%29.svg"
+                    src="/media/word.png"
                     alt="Word"
                     style={{ width: "20px", height: "20px" }}
                   />
                 ) : app.icon === "excel" ? (
                   <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019–present%29.svg"
+                    src="/media/excel.png"
                     alt="Excel"
                     style={{ width: "20px", height: "20px" }}
                   />
@@ -410,7 +410,7 @@ const DesktopScreen = ({
                   />
                 ) : app.icon === "outlook" ? (
                   <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/d/df/Microsoft_Office_Outlook_%282018–present%29.svg"
+                    src="/media/outlook.webp"
                     alt="Outlook"
                     style={{ width: "20px", height: "20px" }}
                   />
@@ -422,7 +422,7 @@ const DesktopScreen = ({
                   />
                 ) : app.icon === "onedrive" ? (
                   <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Microsoft_Office_OneDrive_%282019%E2%80%93present%29.svg"
+                    src="/media/onedrive.jpg"
                     alt="OneDrive"
                     style={{ width: "20px", height: "20px" }}
                   />
