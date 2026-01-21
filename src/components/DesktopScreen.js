@@ -114,13 +114,13 @@ const DesktopScreen = ({
       >
         {iconData.id === "email" ? (
           <img
-            src="/media/outlook.webp"
+            src={`${process.env.PUBLIC_URL}/media/outlook.webp`}
             alt="MUNI Mail"
             style={{ width: "32px", height: "32px" }}
           />
         ) : iconData.id === "onedrive" ? (
           <img
-            src="/media/onedrive.jpg"
+            src={`${process.env.PUBLIC_URL}/media/onedrive.jpg`}
             alt="OneDrive"
             style={{ width: "32px", height: "32px" }}
           />
@@ -132,13 +132,13 @@ const DesktopScreen = ({
           />
         ) : iconData.id === "word" ? (
           <img
-            src="/media/word.png"
+            src={`${process.env.PUBLIC_URL}/media/word.png`}
             alt="Microsoft Word"
             style={{ width: "32px", height: "32px" }}
           />
         ) : iconData.id === "excel" ? (
           <img
-            src="/media/excel.png"
+            src={`${process.env.PUBLIC_URL}/media/excel.png`}
             alt="Microsoft Excel"
             style={{ width: "32px", height: "32px" }}
           />
@@ -392,13 +392,13 @@ const DesktopScreen = ({
               >
                 {app.icon === "word" ? (
                   <img
-                    src="/media/word.png"
+                    src={`${process.env.PUBLIC_URL}/media/word.png`}
                     alt="Word"
                     style={{ width: "20px", height: "20px" }}
                   />
                 ) : app.icon === "excel" ? (
                   <img
-                    src="/media/excel.png"
+                    src={`${process.env.PUBLIC_URL}/media/excel.png`}
                     alt="Excel"
                     style={{ width: "20px", height: "20px" }}
                   />
@@ -410,7 +410,7 @@ const DesktopScreen = ({
                   />
                 ) : app.icon === "outlook" ? (
                   <img
-                    src="/media/outlook.webp"
+                    src={`${process.env.PUBLIC_URL}/media/outlook.webp`}
                     alt="Outlook"
                     style={{ width: "20px", height: "20px" }}
                   />
@@ -422,7 +422,7 @@ const DesktopScreen = ({
                   />
                 ) : app.icon === "onedrive" ? (
                   <img
-                    src="/media/onedrive.jpg"
+                    src={`${process.env.PUBLIC_URL}/media/onedrive.jpg`}
                     alt="OneDrive"
                     style={{ width: "20px", height: "20px" }}
                   />
