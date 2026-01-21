@@ -83,7 +83,7 @@ const DesktopScreen = ({
     ],
   };
 
-  // Jednotná komponenta pro ikonu - řeší všechny problémy s vycentrováním
+  // Jednotná komponenta pro ikonu - bez bílého rámečku
   const DesktopIcon = ({ iconData }) => (
     <div
       className="desktop-icon"
@@ -93,63 +93,68 @@ const DesktopScreen = ({
         marginRight: "16px",
         textAlign: "center",
         width: "80px",
+        cursor: "pointer",
+        transition: "transform 0.2s ease",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = "scale(1.1)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "scale(1)";
       }}
     >
       <div
         className="desktop-icon-image"
         style={{
-          background: "rgba(255, 255, 255, 0.95)",
-          boxShadow:
-            "0 2px 8px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.8)",
-          border: "1px solid rgba(0,0,0,0.1)",
+          background: "transparent",
           position: "relative",
           width: "64px",
           height: "64px",
-          borderRadius: "12px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          margin: "0 auto 8px auto", // Vycentrování ikony a mezera pod ní
+          margin: "0 auto 8px auto",
+          filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))",
         }}
       >
         {iconData.id === "email" ? (
           <img
             src={`${process.env.PUBLIC_URL}/media/outlook.webp`}
             alt="MUNI Mail"
-            style={{ width: "32px", height: "32px" }}
+            style={{ width: "48px", height: "48px", objectFit: "contain" }}
           />
         ) : iconData.id === "onedrive" ? (
           <img
             src={`${process.env.PUBLIC_URL}/media/onedrive.jpg`}
             alt="OneDrive"
-            style={{ width: "32px", height: "32px" }}
+            style={{ width: "48px", height: "48px", objectFit: "contain" }}
           />
         ) : iconData.id === "browser" ? (
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg"
             alt="Microsoft Edge"
-            style={{ width: "32px", height: "32px" }}
+            style={{ width: "48px", height: "48px", objectFit: "contain" }}
           />
         ) : iconData.id === "word" ? (
           <img
             src={`${process.env.PUBLIC_URL}/media/word.png`}
             alt="Microsoft Word"
-            style={{ width: "32px", height: "32px" }}
+            style={{ width: "48px", height: "48px", objectFit: "contain" }}
           />
         ) : iconData.id === "excel" ? (
           <img
             src={`${process.env.PUBLIC_URL}/media/excel.png`}
             alt="Microsoft Excel"
-            style={{ width: "32px", height: "32px" }}
+            style={{ width: "48px", height: "48px", objectFit: "contain" }}
           />
         ) : iconData.id === "teams" ? (
           <img
             src={`${process.env.PUBLIC_URL}/media/teams.svg`}
             alt="Microsoft Teams"
-            style={{ width: "32px", height: "32px" }}
+            style={{ width: "48px", height: "48px", objectFit: "contain" }}
           />
         ) : (
-          <span style={{ fontSize: "2rem" }}>{iconData.icon}</span>
+          <span style={{ fontSize: "3rem" }}>{iconData.icon}</span>
         )}
 
         {/* Notification badge pro email */}
