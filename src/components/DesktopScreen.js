@@ -144,7 +144,7 @@ const DesktopScreen = ({
           />
         ) : iconData.id === "teams" ? (
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Microsoft_Office_Teams_%282018–present%29.svg"
+            src={`${process.env.PUBLIC_URL}/media/teams.svg`}
             alt="Microsoft Teams"
             style={{ width: "32px", height: "32px" }}
           />
@@ -416,7 +416,7 @@ const DesktopScreen = ({
                   />
                 ) : app.icon === "teams" ? (
                   <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Microsoft_Office_Teams_%282018–present%29.svg"
+                    src={`${process.env.PUBLIC_URL}/media/teams.svg`}
                     alt="Teams"
                     style={{ width: "20px", height: "20px" }}
                   />
